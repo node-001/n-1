@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+export const runtime = "nodejs";
+
 export async function middleware(request: NextRequest) {
   // Skip Supabase auth in development when not configured
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

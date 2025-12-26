@@ -27,11 +27,12 @@ const nextConfig: NextConfig = {
     ],
   },
   webpack: (config, { isServer }) => {
-    // Suppress warnings from WalletConnect dependencies
+    // Suppress warnings from WalletConnect/MetaMask dependencies
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         "pino-pretty": false,
+        "@react-native-async-storage/async-storage": false,
       };
     }
     config.externals = [

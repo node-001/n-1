@@ -36,9 +36,20 @@ import {
   TokenInfo
 } from "@/lib/wagmi/config";
 
+interface DonationSuccessData {
+  txHash: string;
+  amount: number;
+  tokenAmount: number;
+  tokenSymbol: string;
+  chainId: number;
+  displayName?: string;
+  message?: string;
+  isAnonymous: boolean;
+}
+
 interface DonationModalProps {
   trigger?: React.ReactNode;
-  onSuccess?: (txHash: string, amount: string, displayName?: string) => void;
+  onSuccess?: (data: DonationSuccessData) => void;
 }
 
 // Default to Base (chainId 8453) as it has low fees
@@ -257,7 +268,16 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
         }),
       }).catch((error) => console.error("Failed to save donation:", error));
 
-      onSuccess?.(txHash, effectiveUsd.toString(), isAnonymous ? undefined : displayName);
+      onSuccess?.({
+        txHash,
+        amount: effectiveUsd,
+        tokenAmount: parseFloat(formattedTokenAmount),
+        tokenSymbol: selectedToken?.symbol || "ETH",
+        chainId: chain?.id || selectedChainId,
+        displayName: isAnonymous ? undefined : displayName,
+        message: message || undefined,
+        isAnonymous,
+      });
 
       // Reset form after a delay
       setTimeout(() => {

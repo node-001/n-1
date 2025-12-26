@@ -113,20 +113,20 @@ export default function GratitudeWallPage() {
                     who needs it. Every contribution, no matter the size, makes a difference.
                   </p>
                   <DonationModal
-                    onSuccess={(txHash, amount, displayName) => {
-                      // Add new donation to the list (amount is now in USD)
+                    onSuccess={(data) => {
+                      // Add new donation to the list
                       setDonations((prev) => [
                         {
-                          id: txHash,
-                          amount: parseFloat(amount),
+                          id: data.txHash,
+                          amount: data.amount,
                           currency: "USD",
-                          tokenAmount: null,
-                          tokenSymbol: null,
-                          displayName: displayName || null,
-                          message: null,
-                          isAnonymous: !displayName,
-                          txHash,
-                          chainId: 1,
+                          tokenAmount: data.tokenAmount,
+                          tokenSymbol: data.tokenSymbol,
+                          displayName: data.displayName || null,
+                          message: data.message || null,
+                          isAnonymous: data.isAnonymous,
+                          txHash: data.txHash,
+                          chainId: data.chainId,
                           createdAt: new Date().toISOString(),
                         },
                         ...prev,

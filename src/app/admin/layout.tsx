@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, Users, MessageSquare, LayoutDashboard, LogOut, Menu } from "lucide-react";
+import { BookOpen, Users, MessageSquare, LayoutDashboard, LogOut, Menu, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -15,6 +15,7 @@ const adminNavItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/stories", label: "Stories", icon: BookOpen },
   { href: "/admin/prescribers", label: "Prescribers", icon: Users },
+  { href: "/admin/donations", label: "Donations", icon: Wallet },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },
 ];
 

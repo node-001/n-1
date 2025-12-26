@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
       totalPrescribers,
       unreadFeedback,
       totalFeedback,
+      donationStats,
     ] = await Promise.all([
       prisma.ledgerEntry.count({ where: { moderationStatus: "PENDING" } }),
       prisma.ledgerEntry.count(),
@@ -20,6 +21,10 @@ export async function GET(request: NextRequest) {
       prisma.prescriber.count(),
       prisma.feedback.count({ where: { status: "UNREAD" } }),
       prisma.feedback.count(),
+      prisma.donation.aggregate({
+        _sum: { amount: true },
+        _count: { id: true },
+      }),
     ]);
 
     return NextResponse.json({
@@ -29,6 +34,8 @@ export async function GET(request: NextRequest) {
       totalPrescribers,
       unreadFeedback,
       totalFeedback,
+      totalDonations: donationStats._count.id || 0,
+      totalDonationAmount: donationStats._sum.amount || 0,
     });
   } catch (error) {
     console.error("Failed to fetch admin stats:", error);

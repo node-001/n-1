@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Users, MessageSquare, ArrowRight } from "lucide-react";
+import { BookOpen, Users, MessageSquare, ArrowRight, Wallet } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,6 +14,8 @@ interface Stats {
   totalStories: number;
   totalPrescribers: number;
   totalFeedback: number;
+  totalDonations: number;
+  totalDonationAmount: number;
 }
 
 export default function AdminDashboard() {
@@ -46,6 +48,7 @@ export default function AdminDashboard() {
       href: "/admin/stories",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
+      isCurrency: false,
     },
     {
       title: "Pending Prescribers",
@@ -55,6 +58,17 @@ export default function AdminDashboard() {
       href: "/admin/prescribers",
       color: "text-emerald-500",
       bgColor: "bg-emerald-500/10",
+      isCurrency: false,
+    },
+    {
+      title: "Donations",
+      value: stats?.totalDonationAmount ?? 0,
+      total: stats?.totalDonations ?? 0,
+      icon: Wallet,
+      href: "/admin/donations",
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+      isCurrency: true,
     },
     {
       title: "New Feedback",
@@ -64,6 +78,7 @@ export default function AdminDashboard() {
       href: "/admin/feedback",
       color: "text-amber-500",
       bgColor: "bg-amber-500/10",
+      isCurrency: false,
     },
   ];
 
@@ -77,7 +92,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((card) => {
           const Icon = card.icon;
           return (
@@ -95,8 +110,14 @@ export default function AdminDashboard() {
                           <Skeleton className="h-6 w-12 mt-1" />
                         ) : (
                           <div className="flex items-baseline gap-2">
-                            <span className="text-2xl font-bold">{card.value}</span>
-                            <span className="text-xs text-muted-foreground">/ {card.total}</span>
+                            <span className="text-2xl font-bold">
+                              {card.isCurrency
+                                ? `$${card.value.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
+                                : card.value}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              {card.isCurrency ? `${card.total} donations` : `/ ${card.total}`}
+                            </span>
                           </div>
                         )}
                       </div>

@@ -1,0 +1,27 @@
+{
+  "name": "n=1 Protocol",
+  "short_name": "n=1",
+  "description": "A healing portal for humanity - prescription ketamine + loving AI companionship",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "icons": [],
+  "categories": ["health", "lifestyle", "medical"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Living Ledger",
+      "short_name": "Ledger",
+      "description": "View healing testimonies",
+      "url": "/living-ledger"
+    },
+    {
+      "name": "Start Your Journey",
+      "short_name": "Start",
+      "description": "Begin your healing journey",
+      "url": "/start-journey"
+    }
+  ]
+}

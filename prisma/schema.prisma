@@ -1,0 +1,260 @@
+// n=1 Protocol Database Schema
+// Supabase PostgreSQL with Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============= USER & AUTH =============
+
+model User {
+  id          String   @id @default(uuid())
+  email       String?  @unique
+  displayName String?  @map("display_name")
+  avatarUrl   String?  @map("avatar_url")
+  isAdmin     Boolean  @default(false) @map("is_admin")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  ledgerEntries LedgerEntry[]
+  votes         Vote[]
+  donations     Donation[]
+
+  @@map("users")
+}
+
+// ============= LIVING LEDGER =============
+
+enum AiUsed {
+  GROK
+  CHATGPT
+  CLAUDE
+  GEMINI
+  OTHER
+  NONE
+}
+
+enum KetamineType {
+  PRESCRIPTION
+  NONE
+  STREET
+}
+
+enum ModerationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  AUTO_HIDDEN
+}
+
+model LedgerEntry {
+  id     String  @id @default(uuid())
+  userId String? @map("user_id")
+
+  // Content
+  title             String?
+  storyText         String  @map("story_text")
+  mediaUrl          String? @map("media_url")
+  mediaType         String? @map("media_type")
+  externalEmbedUrl  String? @map("external_embed_url")
+  externalEmbedType String? @map("external_embed_type")
+
+  // Attribution
+  displayName String?  @map("display_name")
+  isAnonymous Boolean  @default(true) @map("is_anonymous")
+
+  // Self-evaluation metrics (0-10)
+  feelingLovedBefore Int @map("feeling_loved_before")
+  feelingLovedAfter  Int @map("feeling_loved_after")
+  suicidalBefore     Int @map("suicidal_before")
+  suicidalAfter      Int @map("suicidal_after")
+  depressionBefore   Int @map("depression_before")
+  depressionAfter    Int @map("depression_after")
+  anxietyBefore      Int @map("anxiety_before")
+  anxietyAfter       Int @map("anxiety_after")
+  hopeBefore         Int @map("hope_before")
+  hopeAfter          Int @map("hope_after")
+  belongingBefore    Int @map("belonging_before")
+  belongingAfter     Int @map("belonging_after")
+
+  // Protocol details
+  daysSinceStarting Int          @map("days_since_starting")
+  aiUsed            AiUsed       @default(GROK) @map("ai_used")
+  ketamineType      KetamineType @map("ketamine_type")
+
+  // Verification
+  genuineExperience Boolean @default(false) @map("genuine_experience")
+
+  // Moderation
+  moderationStatus ModerationStatus @default(PENDING) @map("moderation_status")
+  moderationScore  Float?           @map("moderation_score")
+  moderationFlags  String[]         @map("moderation_flags")
+
+  // Engagement
+  heartCount Int     @default(0) @map("heart_count")
+  flagCount  Int     @default(0) @map("flag_count")
+  isFeatured Boolean @default(false) @map("is_featured")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user  User?  @relation(fields: [userId], references: [id])
+  votes Vote[]
+
+  @@index([moderationStatus])
+  @@index([heartCount])
+  @@index([createdAt])
+  @@index([isFeatured])
+  @@map("ledger_entries")
+}
+
+model Vote {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  ledgerEntryId String   @map("ledger_entry_id")
+  voteType      String   @map("vote_type")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user        User        @relation(fields: [userId], references: [id])
+  ledgerEntry LedgerEntry @relation(fields: [ledgerEntryId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, ledgerEntryId, voteType])
+  @@map("votes")
+}
+
+// ============= PRESCRIBER DIRECTORY =============
+
+enum PrescriberStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Prescriber {
+  id          String  @id @default(uuid())
+  name        String
+  credentials String
+  specialty   String?
+  practiceName String? @map("practice_name")
+
+  // Contact
+  email   String
+  phone   String?
+  website String?
+
+  // Location
+  address   String?
+  city      String
+  state     String
+  zipCode   String? @map("zip_code")
+  country   String  @default("USA")
+  latitude  Float?
+  longitude Float?
+
+  // Services
+  offersTelemedicine Boolean  @default(false) @map("offers_telemedicine")
+  acceptsInsurance   Boolean  @default(false) @map("accepts_insurance")
+  insuranceAccepted  String[] @map("insurance_accepted")
+
+  // Status
+  status     PrescriberStatus @default(PENDING)
+  isVerified Boolean          @default(false) @map("is_verified")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([state])
+  @@index([city])
+  @@map("prescribers")
+}
+
+// ============= DONATIONS & GRATITUDE =============
+
+enum DonationType {
+  FIAT
+  CRYPTO
+}
+
+model Donation {
+  id     String  @id @default(uuid())
+  userId String? @map("user_id")
+
+  // Donation details (amount stored in USD)
+  amount       Float
+  currency     String       @default("USD")
+  donationType DonationType @map("donation_type")
+
+  // Token details (what was actually sent)
+  tokenAmount Float?  @map("token_amount")
+  tokenSymbol String? @map("token_symbol")
+
+  // Crypto-specific
+  txHash        String? @map("tx_hash")
+  walletAddress String? @map("wallet_address")
+  chainId       Int?    @map("chain_id")
+
+  // Attribution
+  displayName String?  @map("display_name")
+  message     String?
+  isAnonymous Boolean  @default(true) @map("is_anonymous")
+  showOnWall  Boolean  @default(true) @map("show_on_wall")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([createdAt])
+  @@index([showOnWall])
+  @@map("donations")
+}
+
+// ============= EMAIL SIGNUPS =============
+
+model EmailSignup {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  source    String   @default("wear_frequency")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("email_signups")
+}
+
+// ============= FEEDBACK =============
+
+enum FeedbackType {
+  QUESTION
+  FEEDBACK
+  SUGGESTION
+  ISSUE
+  OTHER
+}
+
+enum FeedbackStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+model Feedback {
+  id        String         @id @default(uuid())
+  name      String?
+  email     String?
+  type      FeedbackType   @default(FEEDBACK)
+  message   String
+  status    FeedbackStatus @default(UNREAD)
+  createdAt DateTime       @default(now()) @map("created_at")
+
+  @@index([status])
+  @@map("feedback")
+}

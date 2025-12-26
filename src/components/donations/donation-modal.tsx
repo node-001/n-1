@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import { useAccount, useBalance, useSendTransaction, useWaitForTransactionReceipt, useDisconnect, useWriteContract, useReadContract, useSwitchChain } from "wagmi";
 import { parseUnits, formatUnits, erc20Abi } from "viem";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Wallet, Heart, Check, Loader2, ExternalLink, LogOut, RefreshCw, AlertCircle } from "lucide-react";
 import { fetchTokenPrices, convertUsdToToken, convertTokenToUsd, formatTokenAmount } from "@/lib/wagmi/prices";
 import { TokenIcon } from "./token-icon";
@@ -30,6 +31,7 @@ import {
   DONATION_WALLET,
   SUPPORTED_CHAINS,
   getChainName,
+  getChainIcon,
   getTokensForChain,
   TokenInfo
 } from "@/lib/wagmi/config";
@@ -55,10 +57,25 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [prices, setPrices] = useState<Record<string, number>>({});
   const [pricesLoading, setPricesLoading] = useState(false);
+  const pendingConnection = useRef(false);
 
   const { address, isConnected, chain } = useAccount();
   const { disconnect } = useDisconnect();
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain();
+  const { openConnectModal } = useConnectModal();
+
+  // Reopen modal after wallet connection
+  useEffect(() => {
+    if (isConnected && pendingConnection.current) {
+      pendingConnection.current = false;
+      setOpen(true);
+    }
+  }, [isConnected]);
+
+  const handleConnectClick = () => {
+    pendingConnection.current = true;
+    openConnectModal?.();
+  };
 
   // Fetch prices on mount and when modal opens
   const loadPrices = useCallback(async () => {
@@ -298,18 +315,14 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               <p className="text-sm text-muted-foreground text-center">
                 Connect your wallet to donate
               </p>
-              <ConnectButton.Custom>
-                {({ openConnectModal }) => (
-                  <Button
-                    size="lg"
-                    onClick={openConnectModal}
-                    className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8"
-                  >
-                    <Wallet className="h-5 w-5" />
-                    Connect Wallet
-                  </Button>
-                )}
-              </ConnectButton.Custom>
+              <Button
+                size="lg"
+                onClick={handleConnectClick}
+                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8"
+              >
+                <Wallet className="h-5 w-5" />
+                Connect Wallet
+              </Button>
             </div>
           ) : isConfirmed ? (
             // Success State
@@ -381,7 +394,20 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     onValueChange={handleChainSelect}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Network" />
+                      <SelectValue placeholder="Network">
+                        {selectedChainId && SUPPORTED_CHAINS[selectedChainId] && (
+                          <span className="flex items-center gap-2">
+                            <Image
+                              src={getChainIcon(selectedChainId) || ""}
+                              alt={SUPPORTED_CHAINS[selectedChainId].name}
+                              width={18}
+                              height={18}
+                              className="rounded-full"
+                            />
+                            <span>{SUPPORTED_CHAINS[selectedChainId].name}</span>
+                          </span>
+                        )}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {Object.entries(SUPPORTED_CHAINS).map(([chainId, info]) => {
@@ -389,6 +415,13 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                         return (
                           <SelectItem key={chainId} value={chainId}>
                             <span className="flex items-center gap-2">
+                              <Image
+                                src={info.icon}
+                                alt={info.name}
+                                width={18}
+                                height={18}
+                                className="rounded-full"
+                              />
                               <span className={isCurrentChain ? "text-primary font-medium" : ""}>
                                 {info.name}
                               </span>

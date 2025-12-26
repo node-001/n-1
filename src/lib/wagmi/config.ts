@@ -14,11 +14,30 @@ export const config = getDefaultConfig({
 export const DONATION_WALLET = process.env.NEXT_PUBLIC_DONATION_WALLET || "0x0000000000000000000000000000000000000000";
 
 // Supported chains for display with gas priority (lower = cheaper/preferred)
-export const SUPPORTED_CHAINS: Record<number, { name: string; symbol: string; gasPriority: number }> = {
-  1: { name: "Ethereum", symbol: "ETH", gasPriority: 3 }, // Most expensive
-  137: { name: "Polygon", symbol: "MATIC", gasPriority: 1 }, // Cheapest
-  8453: { name: "Base", symbol: "ETH", gasPriority: 2 }, // Medium
+export const SUPPORTED_CHAINS: Record<number, { name: string; symbol: string; gasPriority: number; icon: string }> = {
+  1: {
+    name: "Ethereum",
+    symbol: "ETH",
+    gasPriority: 3,
+    icon: "https://assets.coingecko.com/coins/images/279/small/ethereum.png"
+  },
+  137: {
+    name: "Polygon",
+    symbol: "MATIC",
+    gasPriority: 1,
+    icon: "https://assets.coingecko.com/coins/images/4713/small/polygon.png"
+  },
+  8453: {
+    name: "Base",
+    symbol: "ETH",
+    gasPriority: 2,
+    icon: "https://assets.coingecko.com/asset_platforms/images/131/small/base.jpeg"
+  },
 };
+
+export function getChainIcon(chainId: number): string | undefined {
+  return SUPPORTED_CHAINS[chainId]?.icon;
+}
 
 export function getChainName(chainId: number): string {
   return SUPPORTED_CHAINS[chainId]?.name || "Unknown";

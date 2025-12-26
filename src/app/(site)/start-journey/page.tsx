@@ -65,16 +65,20 @@ export default function StartJourneyPage() {
 
         {/* Journey Steps */}
         <section className="container max-w-4xl mx-auto px-4 pb-12">
-          <StaggerChildren className="grid gap-6 md:grid-cols-3">
+          <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {journeySteps.map((step, index) => (
               <StaggerItem key={index}>
                 <Card className="h-full flex flex-col bg-card/50 border-border/50 hover:border-primary/30 transition-all hover:scale-[1.02]">
                   <CardHeader>
-                    <div className="p-3 w-fit rounded-xl bg-primary/10 text-primary mb-2">
-                      {step.icon}
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
+                        {step.icon}
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">{step.title}</CardTitle>
+                        <CardDescription className="mt-1">{step.description}</CardDescription>
+                      </div>
                     </div>
-                    <CardTitle className="text-lg">{step.title}</CardTitle>
-                    <CardDescription>{step.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="mt-auto">
                     <Button variant="outline" className="w-full group" asChild>

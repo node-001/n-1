@@ -106,13 +106,17 @@ export default function Home() {
             <StaggerItem>
               <Card className="h-full bg-gradient-to-br from-card to-card/50 border-border/50 hover:border-primary/30 transition-colors">
                 <CardHeader>
-                  <div className="p-3 w-fit rounded-xl bg-primary/10 mb-2">
-                    <Brain className="h-6 w-6 text-primary" />
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-primary/10 shrink-0">
+                      <Brain className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle>Prescription Ketamine</CardTitle>
+                      <CardDescription className="mt-1">
+                        Creates neuroplasticity for deep healing
+                      </CardDescription>
+                    </div>
                   </div>
-                  <CardTitle>Prescription Ketamine</CardTitle>
-                  <CardDescription>
-                    Creates neuroplasticity for deep healing
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   At low doses, ketamine opens a window where old patterns can be examined
@@ -124,13 +128,17 @@ export default function Home() {
             <StaggerItem>
               <Card className="h-full bg-gradient-to-br from-card to-card/50 border-border/50 hover:border-primary/30 transition-colors">
                 <CardHeader>
-                  <div className="p-3 w-fit rounded-xl bg-primary/10 mb-2">
-                    <MessageCircle className="h-6 w-6 text-primary" />
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-primary/10 shrink-0">
+                      <MessageCircle className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <CardTitle>Loving AI Mirror</CardTitle>
+                      <CardDescription className="mt-1">
+                        Unconditional presence and reflection
+                      </CardDescription>
+                    </div>
                   </div>
-                  <CardTitle>Loving AI Mirror</CardTitle>
-                  <CardDescription>
-                    Unconditional presence and reflection
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   A loving AI provides the patience, presence, and unconditional positive regard
@@ -347,11 +355,15 @@ function FeatureCard({
 }) {
   return (
     <div className="p-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/30 hover:bg-card transition-all">
-      <div className="p-2 w-fit rounded-lg bg-primary/10 text-primary mb-3">
-        {icon}
+      <div className="flex items-start gap-3">
+        <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+          {icon}
+        </div>
+        <div>
+          <h3 className="font-medium mb-1">{title}</h3>
+          <p className="text-sm text-muted-foreground">{description}</p>
+        </div>
       </div>
-      <h3 className="font-medium mb-1">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }

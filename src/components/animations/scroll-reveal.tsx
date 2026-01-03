@@ -13,17 +13,17 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start 0.9", "end 0.1"],
   });
 
-  // Fade in as element enters from bottom, fade out as it exits at top
-  // 0-0.3: Fade in (0 → 1)
-  // 0.3-0.55: Fully visible (1)
-  // 0.55-0.85: Fade out (1 → 0)
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.55, 0.85], [0, 1, 1, 0]);
+  // Fade in/out at the edges
+  // 0-0.1: Fade in quickly at bottom edge
+  // 0.1-0.9: Fully visible
+  // 0.9-1.0: Fade out quickly at top edge
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
-  // Slight Y translation for smooth parallax effect
-  const y = useTransform(scrollYProgress, [0, 0.3, 0.55, 0.85], [50, 0, 0, -50]);
+  // Minimal Y translation
+  const y = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [20, 0, 0, -20]);
 
   return (
     <motion.div

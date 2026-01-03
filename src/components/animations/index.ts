@@ -8,3 +8,4 @@ export { SlideIn } from "./slide-in";
 export { BlurIn } from "./blur-in";
 export { HoverScale } from "./hover-scale";
 export { Counter } from "./counter";
+export { ScrollReveal } from "./scroll-reveal";

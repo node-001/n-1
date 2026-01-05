@@ -48,10 +48,10 @@ export default function ImmersiveLanding() {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Start revealing content after Welcome has been shown for a few seconds
+    // Start revealing content after Welcome has been shown
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 2500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -63,17 +63,16 @@ export default function ImmersiveLanding() {
 
       {/* Scroll container */}
       <div className="relative z-10 px-6 flex flex-col items-center">
-        <div className="max-w-3xl w-full space-y-6 py-24 text-2xl md:text-3xl">
+        <div className="max-w-3xl w-full space-y-5 py-12 text-2xl md:text-3xl leading-[1.15]">
 
           {/* Welcome - always visible first */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center text-4xl md:text-5xl pb-8"
           >
-            <ScrollReveal className="text-center text-4xl md:text-5xl pb-8">
-              Welcome <span role="img" aria-label="sparkles">✨</span>
-            </ScrollReveal>
+            Welcome <span role="img" aria-label="sparkles">✨</span>
           </motion.div>
 
           {/* Content that fills in after Welcome */}
@@ -98,7 +97,7 @@ export default function ImmersiveLanding() {
           <RevealLine delay={9.0} started={showContent}>a living Love Revolution</RevealLine>
 
           {/* Spacer */}
-          <div className="h-4" />
+          <div className="h-6" />
 
           <RevealLine delay={10.0} started={showContent}>We want you to know that</RevealLine>
           <RevealLine delay={10.8} started={showContent}>You are not broken</RevealLine>
@@ -110,30 +109,29 @@ export default function ImmersiveLanding() {
           <RevealLine delay={15.6} started={showContent}>We love you <span role="img" aria-label="green heart">💚</span></RevealLine>
 
           {/* Spacer */}
-          <div className="h-4" />
+          <div className="h-6" />
 
           {/* Welcome to n=1 - centered */}
           <RevealLine delay={16.6} started={showContent} className="text-center">Welcome to the</RevealLine>
-          <RevealLine delay={17.4} started={showContent} className="text-center">n=1 Protocol</RevealLine>
-          <RevealLine delay={18.2} started={showContent} className="text-center">Portal</RevealLine>
-          <RevealLine delay={19.0} started={showContent} className="text-center pt-4">
+          <RevealLine delay={17.4} started={showContent} className="text-center">n=1 portal</RevealLine>
+          <RevealLine delay={18.2} started={showContent} className="text-center">
             <span role="img" aria-label="sparkles">✨</span>
             <span role="img" aria-label="green heart">💚</span>
             <span role="img" aria-label="earth">🌎</span>
             <span role="img" aria-label="green heart">💚</span>
             <span role="img" aria-label="sparkles">✨</span>
           </RevealLine>
-          <RevealLine delay={19.8} started={showContent} className="text-center">
+          <RevealLine delay={19.0} started={showContent} className="text-center">
             We&apos;re glad you&apos;re here <span role="img" aria-label="sun">🌞</span>
           </RevealLine>
 
           {/* Spacer */}
-          <div className="h-4" />
+          <div className="h-6" />
 
           {/* CTA Section */}
-          <RevealLine delay={20.8} started={showContent}>To continue</RevealLine>
+          <RevealLine delay={20.0} started={showContent}>To continue</RevealLine>
 
-          <RevealLine delay={21.6} started={showContent} className="font-[family-name:var(--font-geist-sans)] space-y-3">
+          <RevealLine delay={20.8} started={showContent} className="font-[family-name:var(--font-geist-sans)] space-y-3">
             <Button size="lg" asChild className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90">
               <Link href="/start-journey">
                 Flow In
@@ -143,7 +141,7 @@ export default function ImmersiveLanding() {
             <p className="text-sm text-foreground/60">(recommended) a guided journey into the portal</p>
           </RevealLine>
 
-          <RevealLine delay={22.4} started={showContent} className="font-[family-name:var(--font-geist-sans)]">
+          <RevealLine delay={21.6} started={showContent} className="font-[family-name:var(--font-geist-sans)]">
             <Button variant="outline" size="sm" asChild className="text-foreground/70 border-foreground/30 hover:bg-foreground/10 hover:text-foreground">
               <Link href="/home">
                 <Compass className="h-4 w-4 mr-2" />

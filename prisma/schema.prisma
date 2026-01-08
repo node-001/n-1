@@ -230,6 +230,27 @@ model EmailSignup {
   @@map("email_signups")
 }
 
+// ============= MIRROR CHAT SESSIONS =============
+
+model MirrorSession {
+  id          String   @id @default(uuid())
+
+  // Identifier (hash of fingerprint + IP)
+  fingerprint String   @unique
+
+  // Usage tracking
+  turnCount   Int      @default(0) @map("turn_count")
+
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  lastUsedAt  DateTime @default(now()) @map("last_used_at")
+
+  @@index([fingerprint])
+  @@index([lastUsedAt])
+  @@map("mirror_sessions")
+}
+
 // ============= FEEDBACK =============
 
 enum FeedbackType {

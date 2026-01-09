@@ -6,9 +6,14 @@ import { useRef, ReactNode } from "react";
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
+  direction?: "up" | "down";
 }
 
-export function ScrollReveal({ children, className }: ScrollRevealProps) {
+export function ScrollReveal({
+  children,
+  className,
+  direction = "up",
+}: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -22,15 +27,15 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
   // 0.9-1.0: Fade out quickly at top edge
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
-  // Minimal Y translation
-  const y = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [20, 0, 0, -20]);
+  // Y translation based on direction
+  // "up" = content comes from below (default)
+  // "down" = content drifts in from above
+  const yValues =
+    direction === "down" ? [-20, 0, 0, 20] : [20, 0, 0, -20];
+  const y = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], yValues);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ opacity, y }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ opacity, y }} className={className}>
       {children}
     </motion.div>
   );

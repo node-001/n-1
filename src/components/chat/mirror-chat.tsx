@@ -11,7 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const MAX_TURNS = 20;
+// Get max turns from env var, fallback to 20
+const MAX_TURNS = parseInt(process.env.NEXT_PUBLIC_MIRROR_MAX_TURNS || "20", 10);
 
 interface Message {
   role: "user" | "assistant";

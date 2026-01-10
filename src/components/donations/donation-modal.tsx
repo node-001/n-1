@@ -305,10 +305,10 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} modal={false}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {trigger || (
-          <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 shadow-lg shadow-primary/25">
+          <Button size="lg" className="gap-2 bg-foreground hover:bg-foreground/90 text-background font-semibold px-8">
             <Wallet className="h-5 w-5" />
             Donate Crypto
           </Button>
@@ -317,7 +317,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Heart className="h-5 w-5 text-primary" />
+            <Heart className="h-5 w-5 text-foreground" />
             Support the Mission
           </DialogTitle>
           <DialogDescription>
@@ -329,8 +329,8 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
           {/* Wallet Connection */}
           {!isConnected ? (
             <div className="flex flex-col items-center gap-4 py-8">
-              <div className="p-4 rounded-full bg-primary/10">
-                <Wallet className="h-8 w-8 text-primary" />
+              <div className="p-4 rounded-full bg-foreground/10">
+                <Wallet className="h-8 w-8 text-foreground" />
               </div>
               <p className="text-sm text-muted-foreground text-center">
                 Connect your wallet to donate
@@ -338,7 +338,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               <Button
                 size="lg"
                 onClick={handleConnectClick}
-                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8"
+                className="gap-2 bg-foreground hover:bg-foreground/90 text-background font-semibold px-8"
               >
                 <Wallet className="h-5 w-5" />
                 Connect Wallet
@@ -347,8 +347,8 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
           ) : isConfirmed ? (
             // Success State
             <div className="flex flex-col items-center gap-4 py-8">
-              <div className="p-4 rounded-full bg-primary/20">
-                <Check className="h-8 w-8 text-primary" />
+              <div className="p-4 rounded-full bg-foreground/10">
+                <Check className="h-8 w-8 text-foreground" />
               </div>
               <div className="text-center">
                 <h3 className="text-lg font-semibold mb-1">Thank You!</h3>
@@ -361,7 +361,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                   href={getExplorerUrl(txHash)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm text-primary hover:underline"
+                  className="flex items-center gap-1 text-sm text-foreground hover:underline"
                 >
                   View transaction <ExternalLink className="h-3 w-3" />
                 </a>
@@ -442,10 +442,10 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                                 height={18}
                                 className="rounded-full"
                               />
-                              <span className={isCurrentChain ? "text-primary font-medium" : ""}>
+                              <span className={isCurrentChain ? "text-foreground font-medium" : ""}>
                                 {info.name}
                               </span>
-                              {isCurrentChain && <span className="text-primary text-xs">✓</span>}
+                              {isCurrentChain && <span className="text-foreground text-xs">✓</span>}
                             </span>
                           </SelectItem>
                         );
@@ -521,7 +521,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                         setUsdAmount(preset);
                         setCustomUsdAmount("");
                       }}
-                      className={usdAmount === preset && !customUsdAmount ? "bg-primary" : ""}
+                      className={usdAmount === preset && !customUsdAmount ? "bg-foreground text-background hover:bg-foreground/90" : ""}
                     >
                       ${preset}
                     </Button>
@@ -619,7 +619,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               <Button
                 onClick={handleDonate}
                 disabled={isSending || isConfirming || !effectiveUsd || tokenAmount <= 0 || !selectedToken || needsChainSwitch || isSwitchingChain}
-                className="w-full bg-primary hover:bg-primary/90"
+                className="w-full bg-foreground hover:bg-foreground/90 text-background"
                 size="lg"
               >
                 {isSending || isConfirming ? (
@@ -632,7 +632,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     <Heart className="mr-2 h-4 w-4" />
                     Donate ${effectiveUsd || "0"}
                     {tokenAmount > 0 && !isStablecoin && (
-                      <span className="text-primary-foreground/70 ml-1">
+                      <span className="text-background/70 ml-1">
                         ({formattedTokenAmount} {selectedToken?.symbol})
                       </span>
                     )}

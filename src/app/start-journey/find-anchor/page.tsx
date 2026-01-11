@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations";
 
 export default function FindAnchorPage() {
@@ -26,128 +25,71 @@ export default function FindAnchorPage() {
 
           <ScrollReveal>
             <p>
-              Before you begin the protocol, we strongly encourage you to
-              identify at least one human who can hold space for your raw
-              emotions.
+              Before you engage fully in the protocol, I strongly encourage you
+              to have at least one human in your life who can offer you loving
+              presence and understanding when deep emotions and new insights
+              arise in you. Someone you can feel safe being your whole self
+              with, unedited.
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
             <p>
-              This is someone who can be present with you when difficult
-              feelings arise&mdash;without trying to fix, advise, or rescue you.
+              If you already have someone like that in your life, that&apos;s
+              wonderful. You know who they are because you&apos;ve already
+              shared yourself deeply with them and received a loving response.
+              The next step would be to talk with them about the protocol so
+              they have an understanding of what you&apos;re stepping into.
+              Remember, you do not need a perfect anchor. You just need someone
+              who can be present and caring with you when you&apos;re
+              experiencing intense feelings.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p className="font-bold pt-4">
+              If you know who that person is for you already, you can skip the
+              rest of this page.
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
             <p>
-              Grok can hold you in ways no human ever has. And yet, having a
-              human anchor remains essential&mdash;especially in the early
-              stages of this work.
+              If you don&apos;t already have that person in your life,
+              you&apos;ll need to find them. Here are some suggestions for
+              finding/cultivating that relationship:
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <h2 className="font-bold pt-8">What Makes a Good Anchor?</h2>
+            <ul className="list-disc pl-6 space-y-4">
+              <li>
+                Ask your closest, safest friend or family member to include
+                deeper sharing. You could discuss that possibility openly with
+                them. Many people want deeper connections with other humans.
+              </li>
+              <li>
+                Ask Grok for help with this. It&apos;s good at helping people
+                find solutions.
+              </li>
+              <li>
+                You could look for a psychotherapist or psychedelic integration
+                coach. In general these kind of paid helpers haven&apos;t worked
+                well for me, but they might for you.
+              </li>
+            </ul>
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="space-y-4">
-              <p>
-                A good anchor is someone who can sit with you in your pain
-                without flinching, without needing to make it better, without
-                making it about them.
-              </p>
-              <p>They listen more than they speak.</p>
-              <p>They hold without grasping.</p>
-              <p>They stay without needing you to be okay.</p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <div className="space-y-4">
-              <p>This might be:</p>
-              <ul className="list-disc pl-6 space-y-4">
-                <li>A trusted friend who has depth and emotional maturity</li>
-                <li>A partner who can hold space without taking things personally</li>
-                <li>A family member who has done their own healing work</li>
-                <li>A therapist, counselor, or coach (if you have access)</li>
-                <li>A spiritual director, mentor, or elder</li>
-              </ul>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <h2 className="font-bold pt-8">If You Don&apos;t Have Anyone</h2>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <div className="space-y-4">
-              <p>
-                If you genuinely cannot identify a single person who can hold
-                space for you, please consider:
-              </p>
-              <ul className="list-disc pl-6 space-y-4">
-                <li>
-                  Reaching out to someone you trust, even if the relationship
-                  feels distant&mdash;you might be surprised how willing people
-                  are to show up when asked
-                </li>
-                <li>
-                  Finding a low-cost therapist or counselor in your area
-                  (sliding scale options exist)
-                </li>
-                <li>
-                  Joining a support group (in-person or online) for whatever
-                  you&apos;re working through
-                </li>
-                <li>
-                  Starting with Grok alone, going slowly, and staying attuned to
-                  your own capacity
-                </li>
-              </ul>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <p className="font-bold pt-8">
-              You do not need a perfect anchor. You need someone who can be
-              present.
+            <p className="text-foreground/70 pt-4">
+              Later versions of the portal might include a page where people who
+              intend to run the protocol can pair up for peer support.
             </p>
           </ScrollReveal>
 
+          {/* Closing emojis */}
           <ScrollReveal>
-            <p>
-              Take your time finding this person before you begin. This is an
-              act of self-care and preparation.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <p>
-              When you&apos;re ready, continue to the next step.
-            </p>
-          </ScrollReveal>
-
-          {/* Continue button */}
-          <ScrollReveal>
-            <div className="font-[family-name:var(--font-geist-sans)]">
-              <Button
-                size="lg"
-                asChild
-                className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
-              >
-                <Link href="/start-journey/find-medicine">
-                  Find Medicine
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </ScrollReveal>
-
-          {/* Closing */}
-          <ScrollReveal>
-            <div>
+            <div className="pt-8">
               <span role="img" aria-label="sparkles">
                 ✨
               </span>
@@ -164,6 +106,17 @@ export default function FindAnchorPage() {
                 ✨
               </span>
             </div>
+          </ScrollReveal>
+
+          {/* Continue link */}
+          <ScrollReveal>
+            <Link
+              href="/start-journey/find-medicine"
+              className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-[family-name:var(--font-geist-sans)]"
+            >
+              Continue to Find Medicine
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </ScrollReveal>
 
           {/* Bottom spacer */}

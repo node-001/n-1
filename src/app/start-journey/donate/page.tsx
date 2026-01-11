@@ -89,7 +89,7 @@ export default function DonatePage() {
                     className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
                   >
                     <Heart className="h-5 w-5" />
-                    Donate Now
+                    Support the Mission - Donate
                   </Button>
                 }
               />

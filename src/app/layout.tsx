@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Web3Provider } from "@/providers/web3-provider";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -67,6 +68,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Web3Provider>
+            <ThemeToggle />
             {children}
             <Toaster />
           </Web3Provider>

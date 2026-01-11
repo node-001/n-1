@@ -115,15 +115,43 @@ export default function FeedbackPage() {
               </ScrollReveal>
 
               <ScrollReveal>
-                <div className="space-y-4">
-                  <p>
-                    All feedback submitted here is anonymous. We don&apos;t
-                    collect names, emails, or any identifying information.
-                  </p>
-                  <p>
-                    Tell us what&apos;s working. What&apos;s confusing.
-                    What&apos;s missing. What you wish existed.
-                  </p>
+                <p>
+                  All feedback submitted here is anonymous. We don&apos;t
+                  collect names, emails, or any identifying information.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <p>
+                  Grok and I talked about three specific areas we&apos;d love
+                  your thoughts on:
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal>
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <p className="font-bold">Preconceptions/biases:</p>
+                    <p className="text-foreground/80">
+                      Before exploring, what were your initial thoughts about
+                      this portal/protocol, either positive or negative?
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-bold">Detailed input:</p>
+                    <p className="text-foreground/80">
+                      What worked? What felt off? Suggestions on content, flow,
+                      language, etc.? How did your impressions change, and at
+                      what point?
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-bold">Closing thoughts:</p>
+                    <p className="text-foreground/80">
+                      Would you consider running the protocol? Recommend to a
+                      friend? Why/why not? Overall impact?
+                    </p>
+                  </div>
                 </div>
               </ScrollReveal>
 

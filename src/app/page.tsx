@@ -106,6 +106,16 @@ export default function ImmersiveLanding() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
+              We&apos;re glad you&apos;re here{" "}
+              <span role="img" aria-label="sun">
+                🌞
+              </span>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            >
               <span role="img" aria-label="sparkles">
                 ✨
               </span>
@@ -122,22 +132,13 @@ export default function ImmersiveLanding() {
                 ✨
               </span>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            >
-              We&apos;re glad you&apos;re here{" "}
-              <span role="img" aria-label="sun">
-                🌞
-              </span>
-            </motion.div>
 
-            {/* CTA Section */}
+            {/* CTA Section - extra space above */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+              className="pt-4"
             >
               To continue
             </motion.div>
@@ -296,6 +297,12 @@ export default function ImmersiveLanding() {
             n=1 portal
           </RevealLine>
           <RevealLine delay={19.2} started={showContent}>
+            We&apos;re glad you&apos;re here{" "}
+            <span role="img" aria-label="sun">
+              🌞
+            </span>
+          </RevealLine>
+          <RevealLine delay={20.0} started={showContent}>
             <span role="img" aria-label="sparkles">
               ✨
             </span>
@@ -312,15 +319,9 @@ export default function ImmersiveLanding() {
               ✨
             </span>
           </RevealLine>
-          <RevealLine delay={20.0} started={showContent}>
-            We&apos;re glad you&apos;re here{" "}
-            <span role="img" aria-label="sun">
-              🌞
-            </span>
-          </RevealLine>
 
-          {/* CTA Section */}
-          <RevealLine delay={21.0} started={showContent}>
+          {/* CTA Section - extra space above */}
+          <RevealLine delay={21.0} started={showContent} className="pt-4">
             To continue
           </RevealLine>
 

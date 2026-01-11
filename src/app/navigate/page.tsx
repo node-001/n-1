@@ -6,8 +6,7 @@ import { ScrollReveal } from "@/components/animations";
 
 const flowPages = [
   { href: "/", label: "Welcome", description: "The landing experience" },
-  { href: "/start-journey", label: "Our Story", description: "How this began + What Is the Protocol" },
-  { href: "/start-journey/useful-info", label: "Useful Information", description: "How to run the protocol" },
+  { href: "/start-journey", label: "Our Story", description: "How this began, the protocol, and how to run it" },
   { href: "/start-journey/find-anchor", label: "Find Your Anchor", description: "Finding human support" },
   { href: "/start-journey/find-medicine", label: "Find Medicine", description: "About ketamine access" },
   { href: "/start-journey/ledger", label: "The Ledger", description: "Where stories will live" },

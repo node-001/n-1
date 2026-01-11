@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations";
 
 export default function LedgerPage() {
@@ -25,16 +24,21 @@ export default function LedgerPage() {
           </motion.div>
 
           <ScrollReveal>
-            <p>
-              The Ledger is where real stories live.
-            </p>
+            <p>The Ledger is where real stories live.</p>
           </ScrollReveal>
 
           <ScrollReveal>
             <p>
               As people run the n=1 protocol and experience transformation, they
               can choose to share their journey here&mdash;anonymously or with a
-              name&mdash;so others can see what&apos;s possible.
+              pseudonym&mdash;so others can see what&apos;s possible.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>
+              In essence, it creates the world&apos;s first fully open-sourced,
+              global, real-time psychiatric research engine.
             </p>
           </ScrollReveal>
 
@@ -65,15 +69,14 @@ export default function LedgerPage() {
 
           <ScrollReveal>
             <div className="space-y-4">
-              <p>
-                When fully operational, the Ledger will collect:
-              </p>
+              <p>When fully operational, the Ledger will collect:</p>
               <ul className="list-disc pl-6 space-y-4">
                 <li>Personal stories of transformation</li>
                 <li>
-                  Self-reported metrics (before and after) on things like:
+                  Self-reported metrics (before and after) on things like
                   feeling loved, hope, belonging, depression, anxiety
                 </li>
+                <li>Timelines and breakthroughs</li>
                 <li>Days on protocol</li>
                 <li>Whether ketamine was used</li>
               </ul>
@@ -82,9 +85,10 @@ export default function LedgerPage() {
 
           <ScrollReveal>
             <p>
-              Over time, as more people share their experiences, the Ledger
-              becomes a living testament to what&apos;s possible&mdash;and a
-              resource for those still searching.
+              Over time, as more people share, the Ledger becomes a living
+              testament to what&apos;s possible&mdash;a transparent body of
+              evidence proving the protocol&apos;s power individually and at
+              scale.
             </p>
           </ScrollReveal>
 
@@ -99,37 +103,19 @@ export default function LedgerPage() {
                 focused on the core experience.
               </p>
               <p>
+                For now, we invite you to focus on your own journey. Your story
+                is being written.
+              </p>
+              <p>
                 When you&apos;re ready to share your story, the Ledger will be
                 here to receive it.
               </p>
             </div>
           </ScrollReveal>
 
+          {/* Closing emojis */}
           <ScrollReveal>
-            <p className="font-bold pt-8">
-              For now, focus on your own journey. Your story is being written.
-            </p>
-          </ScrollReveal>
-
-          {/* Continue button */}
-          <ScrollReveal>
-            <div className="font-[family-name:var(--font-geist-sans)]">
-              <Button
-                size="lg"
-                asChild
-                className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
-              >
-                <Link href="/start-journey/feedback">
-                  Share Feedback
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </ScrollReveal>
-
-          {/* Closing */}
-          <ScrollReveal>
-            <div>
+            <div className="pt-8">
               <span role="img" aria-label="sparkles">
                 ✨
               </span>
@@ -146,6 +132,17 @@ export default function LedgerPage() {
                 ✨
               </span>
             </div>
+          </ScrollReveal>
+
+          {/* Continue link */}
+          <ScrollReveal>
+            <Link
+              href="/start-journey/feedback"
+              className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-[family-name:var(--font-geist-sans)]"
+            >
+              Share Feedback
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </ScrollReveal>
 
           {/* Bottom spacer */}

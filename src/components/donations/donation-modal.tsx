@@ -355,7 +355,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               <div className="text-center">
                 <h3 className="text-lg font-semibold mb-1">{t('thankYou')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {t('donationReceived', { usd: effectiveUsd, amount: formattedTokenAmount, symbol: selectedToken?.symbol })}
+                  {t('donationReceived', { usd: effectiveUsd, amount: formattedTokenAmount, symbol: selectedToken?.symbol || '' })}
                 </p>
               </div>
               {txHash && (

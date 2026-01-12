@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { Heart, Compass } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,9 @@ import { ScrollReveal } from "@/components/animations";
 import { DonationModal } from "@/components/donations/donation-modal";
 
 export default function DonatePage() {
+  const t = useTranslations('donate');
+  const tc = useTranslations('common');
+
   return (
     <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-cormorant)]">
       {/* Subtle gradient background */}
@@ -22,61 +26,31 @@ export default function DonatePage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold">
-              Support the Mission
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold">{t('title')}</h1>
           </motion.div>
 
           <ScrollReveal>
-            <p>
-              You&apos;ve reached the end of the guided flow.
-            </p>
+            <p>{t('thisPortal')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>
-              This portal exists to deliver healing love to every human who
-              needs it&mdash;as fast as possible, for free, forever.
-            </p>
+            <p>{t('neverDilute')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>
-              We don&apos;t charge for access. We don&apos;t sell your data. We
-              don&apos;t run ads.
-            </p>
+            <p>{t('andWeHave')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>
-              We rely entirely on the generosity of those who believe in this
-              mission.
-            </p>
+            <p>{t('onlyMeans')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <h2 className="font-bold pt-8">If This Resonates</h2>
+            <p>{t('ifSomething')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="space-y-4">
-              <p>
-                If something here has touched you&mdash;if you feel the
-                potential of what this could become&mdash;consider supporting
-                the work.
-              </p>
-              <p>
-                Every donation, regardless of size, helps keep this portal free
-                and allows us to reach more people who need it.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <p>
-              Donations are made via cryptocurrency for transparency and global
-              accessibility.
-            </p>
+            <p>{t('donationsVia')}</p>
           </ScrollReveal>
 
           {/* Donate button */}
@@ -89,63 +63,76 @@ export default function DonatePage() {
                     className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
                   >
                     <Heart className="h-5 w-5" />
-                    Support the Mission - Donate
+                    {t('donateButton')}
                   </Button>
                 }
               />
             </div>
           </ScrollReveal>
 
+          {/* Calling Team Members Section */}
           <ScrollReveal>
-            <p className="text-foreground/60">
-              Not ready to donate? That&apos;s completely okay. Your presence
-              here matters.
+            <h2 className="font-bold pt-12">{t('callingTeamTitle')}</h2>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('portalNewLiving')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('mostImmediateNeed')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('otherPositions')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('weBelieve')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>
+              {t('ifCallingResonates')}{" "}
+              <a
+                href="mailto:node001n1@proton.me"
+                className="underline hover:text-foreground/70"
+              >
+                node001n1@proton.me
+              </a>{" "}
+              {t('tellMeAbout')}
             </p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <h2 className="font-bold pt-8">What&apos;s Next</h2>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <div className="space-y-4">
-              <p>
-                You&apos;ve completed the guided introduction to the n=1
-                protocol.
-              </p>
-              <p>
-                From here, you can explore the portal freely, return to Grok to
-                continue your work, or simply sit with what you&apos;ve
-                experienced.
-              </p>
-              <p>
-                There is no rush. This is your journey.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <p className="font-bold pt-8">
-              We love you. Thank you for being here.
+            <p>
+              {t('ifSomeoneRespect')}{" "}
+              <span role="img" aria-label={tc('greenHeart')}>
+                💚
+              </span>
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p className="font-bold pt-8">{t('weLoveYou')}</p>
           </ScrollReveal>
 
           {/* Final emoji line */}
           <ScrollReveal>
             <div className="text-3xl">
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="earth">
+              <span role="img" aria-label={tc('earth')}>
                 🌎
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
             </div>
@@ -162,7 +149,7 @@ export default function DonatePage() {
               >
                 <Link href="/navigate">
                   <Compass className="h-5 w-5" />
-                  Explore the Portal
+                  {t('explorePortal')}
                 </Link>
               </Button>
             </div>

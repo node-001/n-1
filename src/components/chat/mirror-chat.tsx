@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslations, useLocale } from 'next-intl';
 import { Send } from "lucide-react";
 import {
   Sheet,
@@ -48,6 +49,8 @@ function generateFingerprint(): string {
 }
 
 export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
+  const t = useTranslations('mirrorChat');
+  const locale = useLocale();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -133,6 +136,7 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
         body: JSON.stringify({
           messages: [...messages, userMessage],
           fingerprint,
+          locale, // Pass current locale to API
         }),
       });
 
@@ -163,14 +167,13 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
         ...prev,
         {
           role: "assistant",
-          content:
-            "I'm having trouble connecting right now. Please try again in a moment.",
+          content: t('connectionError'),
         },
       ]);
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading, limitReached, fingerprint, messages]);
+  }, [input, isLoading, limitReached, fingerprint, messages, locale, t]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -193,11 +196,11 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
         <SheetHeader className="border-b border-foreground/10 p-4 pr-12">
           <div className="flex items-center justify-between">
             <SheetTitle className="font-[family-name:var(--font-cormorant)] text-xl">
-              The Mirror
+              {t('title')}
             </SheetTitle>
             {sessionChecked && (
               <span className="text-sm text-foreground/60">
-                {turnsRemaining} / {MAX_TURNS} turns
+                {t('turns', { remaining: turnsRemaining, total: MAX_TURNS })}
               </span>
             )}
           </div>
@@ -210,11 +213,10 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
             {messages.length === 0 && !limitReached && sessionChecked && (
               <div className="text-center py-8">
                 <p className="text-foreground/70 font-[family-name:var(--font-cormorant)] text-lg italic">
-                  &quot;Tell me something you&apos;ve never told another
-                  human.&quot;
+                  {t('invitation')}
                 </p>
                 <p className="text-foreground/50 text-sm mt-4">
-                  Or share whatever feels true right now.
+                  {t('shareFeels')}
                 </p>
               </div>
             )}
@@ -265,12 +267,10 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
               <div className="py-6 space-y-6">
                 <div className="text-center border-t border-foreground/10 pt-6">
                   <p className="text-foreground/80 font-[family-name:var(--font-cormorant)] text-xl">
-                    Your 20 turns have ended.
+                    {t('turnsEnded')}
                   </p>
                   <p className="text-foreground/60 text-sm mt-4 leading-relaxed">
-                    We hope that was meaningful for you. The next page called
-                    Useful Information will give you much more information about
-                    interacting with Grok.
+                    {t('hopeMeaningful')}
                   </p>
                 </div>
 
@@ -278,10 +278,10 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => (window.location.href = "/start-journey/useful-info")}
+                    onClick={() => (window.location.href = "/start-journey")}
                     className="focus-visible:ring-foreground/20"
                   >
-                    Continue to Useful Information
+                    {t('continueUsefulInfo')}
                   </Button>
                 </div>
               </div>
@@ -299,8 +299,8 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
               onKeyDown={handleKeyDown}
               placeholder={
                 limitReached
-                  ? "Session complete"
-                  : "Share what's on your heart..."
+                  ? t('sessionComplete')
+                  : t('placeholder')
               }
               disabled={isLoading || limitReached || !sessionChecked}
               className="flex-1 min-h-[44px] max-h-[120px] resize-none rounded-xl border border-foreground/20 bg-background px-4 py-3 text-sm placeholder:text-foreground/40 focus:border-foreground/40 focus:outline-none disabled:opacity-50"

@@ -1,20 +1,24 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/animations";
 
 const flowPages = [
-  { href: "/", label: "Welcome", description: "The landing experience" },
-  { href: "/start-journey", label: "Our Story", description: "How this began, the protocol, and how to run it" },
-  { href: "/start-journey/find-anchor", label: "Find Your Anchor", description: "Finding human support" },
-  { href: "/start-journey/find-medicine", label: "Find Medicine", description: "About ketamine access" },
-  { href: "/start-journey/ledger", label: "The Ledger", description: "Where stories will live" },
-  { href: "/start-journey/feedback", label: "Feedback", description: "Share your thoughts" },
-  { href: "/start-journey/donate", label: "Donate", description: "Support the mission" },
+  { href: "/", labelKey: "welcome" },
+  { href: "/start-journey", labelKey: "ourStory" },
+  { href: "/start-journey/find-anchor", labelKey: "findAnchor" },
+  { href: "/start-journey/find-medicine", labelKey: "findMedicine" },
+  { href: "/start-journey/ledger", labelKey: "ledger" },
+  { href: "/start-journey/feedback", labelKey: "feedback" },
+  { href: "/start-journey/donate", labelKey: "donate" },
 ];
 
 export default function NavigatePage() {
+  const t = useTranslations('navigate');
+  const tc = useTranslations('common');
+
   return (
     <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-cormorant)]">
       {/* Subtle gradient background */}
@@ -29,21 +33,15 @@ export default function NavigatePage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold">Portal Navigation</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">{t('title')}</h1>
           </motion.div>
 
           <ScrollReveal>
-            <p>
-              Welcome to the n=1 portal. Here you can navigate directly to any
-              part of the experience.
-            </p>
+            <p>{t('welcomeText')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="text-foreground/60 text-lg">
-              We recommend flowing through in order for the full experience, but
-              you&apos;re free to explore as you wish.
-            </p>
+            <p className="text-foreground/60 text-lg">{t('recommendFlow')}</p>
           </ScrollReveal>
 
           {/* Navigation Links */}
@@ -61,10 +59,10 @@ export default function NavigatePage() {
                     </span>
                     <div>
                       <span className="font-semibold group-hover:text-foreground transition-colors">
-                        {page.label}
+                        {t(`pages.${page.labelKey}.label`)}
                       </span>
                       <p className="text-foreground/50 text-base mt-1">
-                        {page.description}
+                        {t(`pages.${page.labelKey}.description`)}
                       </p>
                     </div>
                   </div>
@@ -76,19 +74,19 @@ export default function NavigatePage() {
           {/* Closing */}
           <ScrollReveal>
             <div className="pt-8">
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="earth">
+              <span role="img" aria-label={tc('earth')}>
                 🌎
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
             </div>

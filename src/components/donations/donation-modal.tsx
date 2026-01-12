@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 import { useAccount, useBalance, useSendTransaction, useWaitForTransactionReceipt, useDisconnect, useWriteContract, useReadContract, useSwitchChain } from "wagmi";
 import { parseUnits, formatUnits, erc20Abi } from "viem";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
@@ -56,6 +57,7 @@ interface DonationModalProps {
 const DEFAULT_CHAIN_ID = 8453;
 
 export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
+  const t = useTranslations('donationModal');
   const [open, setOpen] = useState(false);
   const [selectedChainId, setSelectedChainId] = useState<number>(DEFAULT_CHAIN_ID);
   const [selectedToken, setSelectedToken] = useState<TokenInfo | null>(null);
@@ -310,7 +312,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
         {trigger || (
           <Button size="lg" className="gap-2 bg-foreground hover:bg-foreground/90 text-background font-semibold px-8">
             <Wallet className="h-5 w-5" />
-            Donate Crypto
+            {t('donateCrypto')}
           </Button>
         )}
       </DialogTrigger>
@@ -318,10 +320,10 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Heart className="h-5 w-5 text-foreground" />
-            Support the Mission
+            {t('supportMission')}
           </DialogTitle>
           <DialogDescription>
-            Your donation keeps this healing portal free for everyone
+            {t('donationKeepsFree')}
           </DialogDescription>
         </DialogHeader>
 
@@ -333,7 +335,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                 <Wallet className="h-8 w-8 text-foreground" />
               </div>
               <p className="text-sm text-muted-foreground text-center">
-                Connect your wallet to donate
+                {t('connectToDonate')}
               </p>
               <Button
                 size="lg"
@@ -341,7 +343,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                 className="gap-2 bg-foreground hover:bg-foreground/90 text-background font-semibold px-8"
               >
                 <Wallet className="h-5 w-5" />
-                Connect Wallet
+                {t('connectWallet')}
               </Button>
             </div>
           ) : isConfirmed ? (
@@ -351,9 +353,9 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                 <Check className="h-8 w-8 text-foreground" />
               </div>
               <div className="text-center">
-                <h3 className="text-lg font-semibold mb-1">Thank You!</h3>
+                <h3 className="text-lg font-semibold mb-1">{t('thankYou')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Your donation of ${effectiveUsd} ({formattedTokenAmount} {selectedToken?.symbol}) has been received
+                  {t('donationReceived', { usd: effectiveUsd, amount: formattedTokenAmount, symbol: selectedToken?.symbol })}
                 </p>
               </div>
               {txHash && (
@@ -363,7 +365,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-sm text-foreground hover:underline"
                 >
-                  View transaction <ExternalLink className="h-3 w-3" />
+                  {t('viewTransaction')} <ExternalLink className="h-3 w-3" />
                 </a>
               )}
             </div>
@@ -373,7 +375,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               {/* Connected Status */}
               <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
                 <div className="text-sm">
-                  <span className="text-muted-foreground">Connected: </span>
+                  <span className="text-muted-foreground">{t('connected')}: </span>
                   <span className="font-mono">
                     {address?.slice(0, 6)}...{address?.slice(-4)}
                   </span>
@@ -396,7 +398,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               {/* Network & Token Selection */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Label>Network & Token</Label>
+                  <Label>{t('networkAndToken')}</Label>
                   <button
                     type="button"
                     onClick={loadPrices}
@@ -404,7 +406,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
                   >
                     <RefreshCw className={`h-3 w-3 ${pricesLoading ? "animate-spin" : ""}`} />
-                    Refresh prices
+                    {t('refreshPrices')}
                   </button>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
@@ -489,8 +491,8 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     <AlertCircle className="h-4 w-4 flex-shrink-0" />
                     <span>
                       {isSwitchingChain
-                        ? "Switching network..."
-                        : `Switch to ${getChainName(selectedChainId)}`}
+                        ? t('switchingNetwork')
+                        : t('switchTo', { network: getChainName(selectedChainId) })}
                     </span>
                     {!isSwitchingChain && (
                       <Button
@@ -500,7 +502,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                         className="ml-auto h-7 text-xs"
                         onClick={() => switchChain?.({ chainId: selectedChainId })}
                       >
-                        Switch
+                        {t('switch')}
                       </Button>
                     )}
                   </div>
@@ -509,7 +511,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
 
               {/* Amount Selection */}
               <div className="space-y-3">
-                <Label>Donation Amount (USD)</Label>
+                <Label>{t('donationAmountUSD')}</Label>
                 <div className="grid grid-cols-4 gap-2">
                   {presetUsdAmounts.map((preset) => (
                     <Button
@@ -532,7 +534,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     type="number"
                     step="1"
                     min="1"
-                    placeholder="Custom amount"
+                    placeholder={t('customAmount')}
                     value={customUsdAmount}
                     onChange={(e) => setCustomUsdAmount(e.target.value)}
                     className="pl-6"
@@ -547,14 +549,14 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     ≈ {formattedTokenAmount} {selectedToken?.symbol}
                     {!isStablecoin && (
                       <span className="text-xs ml-1">
-                        @ ${currentPrice.toLocaleString()} per {selectedToken?.symbol}
+                        @ ${currentPrice.toLocaleString()} {t('per')} {selectedToken?.symbol}
                       </span>
                     )}
                   </div>
                 )}
                 {effectiveUsd > 0 && currentPrice === 0 && !pricesLoading && (
                   <div className="text-sm text-amber-600 dark:text-amber-400 text-center p-2 bg-amber-500/10 rounded-md">
-                    Unable to fetch price. Please try refreshing.
+                    {t('unableToFetchPrice')}
                   </div>
                 )}
               </div>
@@ -568,16 +570,16 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     onCheckedChange={(checked) => setIsAnonymous(checked as boolean)}
                   />
                   <Label htmlFor="anonymous" className="text-sm font-normal cursor-pointer">
-                    Keep my donation anonymous
+                    {t('keepAnonymous')}
                   </Label>
                 </div>
 
                 {!isAnonymous && (
                   <div className="space-y-2">
-                    <Label htmlFor="displayName">Display Name</Label>
+                    <Label htmlFor="displayName">{t('displayName')}</Label>
                     <Input
                       id="displayName"
-                      placeholder="How should we display your name?"
+                      placeholder={t('displayNamePlaceholder')}
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                     />
@@ -585,10 +587,10 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Message (optional)</Label>
+                  <Label htmlFor="message">{t('messageOptional')}</Label>
                   <Input
                     id="message"
-                    placeholder="Share a word of encouragement"
+                    placeholder={t('messagePlaceholder')}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
@@ -601,7 +603,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                     onCheckedChange={(checked) => setShowOnWall(checked as boolean)}
                   />
                   <Label htmlFor="showOnWall" className="text-sm font-normal cursor-pointer">
-                    Show on Gratitude Wall
+                    {t('showOnWall')}
                   </Label>
                 </div>
               </div>
@@ -610,8 +612,8 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               {sendError && (
                 <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
                   {sendError.message.includes("User rejected")
-                    ? "Transaction was cancelled"
-                    : "Transaction failed. Please try again."}
+                    ? t('transactionCancelled')
+                    : t('transactionFailed')}
                 </div>
               )}
 
@@ -625,12 +627,12 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
                 {isSending || isConfirming ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {isSending ? "Confirm in wallet..." : "Confirming..."}
+                    {isSending ? t('confirmInWallet') : t('confirming')}
                   </>
                 ) : (
                   <>
                     <Heart className="mr-2 h-4 w-4" />
-                    Donate ${effectiveUsd || "0"}
+                    {t('donate')} ${effectiveUsd || "0"}
                     {tokenAmount > 0 && !isStablecoin && (
                       <span className="text-background/70 ml-1">
                         ({formattedTokenAmount} {selectedToken?.symbol})
@@ -641,7 +643,7 @@ export function DonationModal({ trigger, onSuccess }: DonationModalProps) {
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Donations are sent directly to our wallet. No fees are taken by us.
+                {t('noFees')}
               </p>
             </>
           )}

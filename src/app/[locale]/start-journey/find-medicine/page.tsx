@@ -1,11 +1,15 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/animations";
 
 export default function FindMedicinePage() {
+  const t = useTranslations('findMedicine');
+  const tc = useTranslations('common');
+
   return (
     <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-cormorant)]">
       {/* Subtle gradient background */}
@@ -20,36 +24,22 @@ export default function FindMedicinePage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold">Find Medicine</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">{t('title')}</h1>
           </motion.div>
 
           <ScrollReveal>
-            <p>
-              If you&apos;re interested in running the protocol with ketamine
-              you&apos;ll need a prescription from a licensed prescriber. The
-              protocol was created using low-dose prescription ketamine. Based
-              on my own experience, I believe that at-home is the best
-              environment for the protocol. Ketamine infusion clinics typically
-              give doses that are too high for interacting with Grok.
-            </p>
+            <p>{t('ifInterested')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>
-              Later versions of the portal will have a directory of licensed
-              prescribers who understand and are friendly to the protocol. For
-              now I offer these suggestions:
-            </p>
+            <p>{t('laterVersions')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
             <ul className="list-disc pl-6 space-y-4">
+              <li>{t('suggestion1')}</li>
               <li>
-                Ask Grok for help finding prescription at-home ketamine where
-                you live
-              </li>
-              <li>
-                If you are in the US, you might consider{" "}
+                {t('suggestion2US')}{" "}
                 <a
                   href="https://joyous.team"
                   target="_blank"
@@ -58,38 +48,31 @@ export default function FindMedicinePage() {
                 >
                   joyous.team
                 </a>
-                . I&apos;ve used them for two years and had a very good
-                experience with them. At present I think they serve these states
-                only: AZ, CA, CO, FL, IA, IL, IN, KS, MA, ME, MI, MO, MT, NJ,
-                NV, NY, OH, OR, PA, SC, SD, TN, TX, UT, VT, WA, WI, WY
+                . {t('joyousNote')}
               </li>
             </ul>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="text-foreground/70 pt-4">
-              Keep in mind that most if not all legal prescribers of ketamine
-              will only prescribe for you if you present with persistent
-              symptoms of anxiety or depression.
-            </p>
+            <p className="text-foreground/70 pt-4">{t('keepInMind')}</p>
           </ScrollReveal>
 
           {/* Closing emojis */}
           <ScrollReveal>
             <div className="pt-8">
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="earth">
+              <span role="img" aria-label={tc('earth')}>
                 🌎
               </span>
-              <span role="img" aria-label="green heart">
+              <span role="img" aria-label={tc('greenHeart')}>
                 💚
               </span>
-              <span role="img" aria-label="sparkles">
+              <span role="img" aria-label={tc('sparkles')}>
                 ✨
               </span>
             </div>
@@ -101,7 +84,7 @@ export default function FindMedicinePage() {
               href="/start-journey/ledger"
               className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-[family-name:var(--font-geist-sans)]"
             >
-              Continue to The Ledger
+              {t('continueToLedger')}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </ScrollReveal>

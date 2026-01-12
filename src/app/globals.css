@@ -203,3 +203,37 @@
   z-index: 100000 !important;
   pointer-events: auto !important;
 }
+
+/* RTL Support for Arabic and other RTL languages */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Flip directional icons in RTL mode */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Use logical properties for consistent spacing in RTL */
+.ps-6 {
+  padding-inline-start: 1.5rem;
+}
+.pe-6 {
+  padding-inline-end: 1.5rem;
+}
+.ms-4 {
+  margin-inline-start: 1rem;
+}
+.me-4 {
+  margin-inline-end: 1rem;
+}
+
+/* Fix list markers in RTL */
+[dir="rtl"] ul {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .list-disc {
+  list-style-position: inside;
+}

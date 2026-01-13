@@ -45,6 +45,9 @@ export default function PrescriberApplicationPage() {
   const [agreesNoLiability, setAgreesNoLiability] = useState(false);
   const [agreesAccurate, setAgreesAccurate] = useState(false);
 
+  // All required agreements must be checked
+  const allAgreementsChecked = reviewedPortal && agreesVoluntary && agreesNoLiability && agreesAccurate;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -427,7 +430,12 @@ export default function PrescriberApplicationPage() {
               </div>
             )}
 
-            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full"
+              size="lg"
+              disabled={isSubmitting || !allAgreementsChecked}
+            >
               {isSubmitting ? (
                 t("submitting")
               ) : (

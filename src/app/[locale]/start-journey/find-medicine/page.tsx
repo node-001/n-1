@@ -50,6 +50,17 @@ export default function FindMedicinePage() {
                 </a>
                 . {t('joyousNote')}
               </li>
+              <li>
+                {t('askpNote')}{" "}
+                <a
+                  href="https://askp.org/directory/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-foreground/70"
+                >
+                  askp.org/directory
+                </a>
+              </li>
             </ul>
           </ScrollReveal>
 

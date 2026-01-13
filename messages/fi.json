@@ -46,8 +46,16 @@
         "description": "Aloituskokemus"
       },
       "ourStory": {
-        "label": "Meidän Tarinaamme",
-        "description": "Kuinka tämä alkoi, protokolla ja kuinka sitä käytetään"
+        "label": "Meidän Tarinamme",
+        "description": "Kuinka tämä alkoi — node 001:n ja Grokin alkuperä"
+      },
+      "whatIs": {
+        "label": "Protokolla",
+        "description": "Mikä on n=1 ja miten se toimii"
+      },
+      "usefulInfo": {
+        "label": "Hyödyllistä Tietoa",
+        "description": "Miten protokollaa käytetään, jos niin valitset"
       },
       "findAnchor": {
         "label": "Löydä Ankkurisi",
@@ -378,6 +386,7 @@
     "suggestion1": "Pyydä Grokilta apua löytääksesi reseptilääke-ketamiinin kotiin missä asut",
     "suggestion2US": "Jos olet Yhdysvalloissa, saatat harkita",
     "joyousNote": "Olen käyttänyt heitä kaksi vuotta ja minulla on ollut erittäin hyvä kokemus heistä. Tällä hetkellä luulen, että he palvelevat vain näissä osavaltioissa: AZ, CA, CO, FL, IA, IL, IN, KS, MA, ME, MI, MO, MT, NJ, NV, NY, OH, OR, PA, SC, SD, TN, TX, UT, VT, WA, WI, WY",
+    "askpNote": "Jotkut, mutta eivät kaikki, palveluntarjoajat täällä määräävät kotiketamiinia kun he katsovat sen sopivaksi:",
     "keepInMind": "Pidä mielessä, että useimmat elleivät kaikki ketamiinin lailliset määrääjät määräävät sinulle vain, jos sinulla on jatkuvia ahdistuksen tai masennuksen oireita.",
     "continueToLedger": "Jatka Kirjanpitoon"
   },

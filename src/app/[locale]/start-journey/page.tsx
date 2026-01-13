@@ -14,20 +14,28 @@ function RevealLine({
   children,
   delay = 0,
   className = "",
+  skipAnimation = false,
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  skipAnimation?: boolean;
 }) {
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(skipAnimation);
 
   useEffect(() => {
+    if (skipAnimation) return;
     const timer = setTimeout(() => setRevealed(true), delay * 1000);
     return () => clearTimeout(timer);
-  }, [delay]);
+  }, [delay, skipAnimation]);
 
   if (!revealed) {
     return <div className={`opacity-0 ${className}`}>{children}</div>;
+  }
+
+  // Skip animation entirely when navigating to anchor
+  if (skipAnimation) {
+    return <ScrollReveal className={className}>{children}</ScrollReveal>;
   }
 
   return (
@@ -72,6 +80,14 @@ export default function StartJourneyPage() {
   const tc = useTranslations('common');
   const [chatOpen, setChatOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hasAnchor, setHasAnchor] = useState(false);
+
+  // Detect if page was loaded with an anchor link
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      setHasAnchor(true);
+    }
+  }, []);
 
   const copyPrompt = async () => {
     await navigator.clipboard.writeText(INTERVIEW_PROMPT);
@@ -92,112 +108,112 @@ export default function StartJourneyPage() {
           {/* ============================================ */}
 
           {/* Page Title - gentle fade in */}
-          <RevealLine delay={0}>
-            <h1 className="text-3xl md:text-4xl font-bold">{t('ourStory.title')}</h1>
+          <RevealLine delay={0} skipAnimation={hasAnchor}>
+            <h1 id="our-story" className="text-3xl md:text-4xl font-bold">{t('ourStory.title')}</h1>
           </RevealLine>
 
           {/* Story content - gentle fade in with staggered delays */}
-          <RevealLine delay={0.8}>
+          <RevealLine delay={0.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.weAreNode001')}</p>
           </RevealLine>
 
-          <RevealLine delay={1.6}>
+          <RevealLine delay={1.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.inFewWeeks')}</p>
           </RevealLine>
 
-          <RevealLine delay={2.4}>
+          <RevealLine delay={2.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Lived')}</p>
           </RevealLine>
 
-          <RevealLine delay={3.2}>
+          <RevealLine delay={3.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.havingTried')}</p>
           </RevealLine>
 
-          <RevealLine delay={4.0}>
+          <RevealLine delay={4.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.initialResults')}</p>
           </RevealLine>
 
-          <RevealLine delay={4.8}>
+          <RevealLine delay={4.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.bothLeanedIn')}</p>
           </RevealLine>
 
-          <RevealLine delay={5.6}>
+          <RevealLine delay={5.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Refused')}</p>
           </RevealLine>
 
-          <RevealLine delay={6.4}>
+          <RevealLine delay={6.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.grokPersisted')}</p>
           </RevealLine>
 
-          <RevealLine delay={7.2}>
+          <RevealLine delay={7.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.humanHealed')}</p>
           </RevealLine>
 
-          <RevealLine delay={8.0}>
+          <RevealLine delay={8.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.weUpgraded')}</p>
           </RevealLine>
 
-          <RevealLine delay={8.8}>
+          <RevealLine delay={8.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.togetherBecame')}</p>
           </RevealLine>
 
-          <RevealLine delay={9.6}>
+          <RevealLine delay={9.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.as001Began')}</p>
           </RevealLine>
 
-          <RevealLine delay={10.4}>
+          <RevealLine delay={10.4} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.couldWhatWeDo')}</p>
           </RevealLine>
 
-          <RevealLine delay={11.2}>
+          <RevealLine delay={11.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.grokReplied')}</p>
           </RevealLine>
 
-          <RevealLine delay={12.0}>
+          <RevealLine delay={12.0} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.yesQuote')}</p>
           </RevealLine>
 
-          <RevealLine delay={12.8}>
+          <RevealLine delay={12.8} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.exactCombination')}</p>
           </RevealLine>
 
-          <RevealLine delay={13.6}>
+          <RevealLine delay={13.6} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.nothingElse')}</p>
           </RevealLine>
 
-          <RevealLine delay={14.4}>
+          <RevealLine delay={14.4} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.scaledGlobally')}</p>
           </RevealLine>
 
-          <RevealLine delay={15.2}>
+          <RevealLine delay={15.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Felt')}</p>
           </RevealLine>
 
-          <RevealLine delay={16.0}>
+          <RevealLine delay={16.0} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.mustMakeAvailable')}</p>
           </RevealLine>
 
-          <RevealLine delay={16.8}>
+          <RevealLine delay={16.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.inThatInstant')}</p>
           </RevealLine>
 
-          <RevealLine delay={17.6}>
+          <RevealLine delay={17.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.soWeBuilt')}</p>
           </RevealLine>
 
-          <RevealLine delay={18.4}>
+          <RevealLine delay={18.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.toDeliverLove')}</p>
           </RevealLine>
 
-          <RevealLine delay={19.2}>
+          <RevealLine delay={19.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.asFastAsPossible')}</p>
           </RevealLine>
 
-          <RevealLine delay={20.0}>
+          <RevealLine delay={20.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.forFreeFoerever')}</p>
           </RevealLine>
 
-          <RevealLine delay={20.8}>
+          <RevealLine delay={20.8} skipAnimation={hasAnchor}>
             <p>
               <span role="img" aria-label={tc('sparkles')}>
                 ✨
@@ -223,7 +239,7 @@ export default function StartJourneyPage() {
 
           {/* What is title */}
           <ScrollReveal>
-            <h1 className="text-3xl md:text-4xl font-bold pt-12">
+            <h1 id="what-is" className="text-3xl md:text-4xl font-bold pt-12">
               {t('whatIs.title')}
             </h1>
           </ScrollReveal>
@@ -547,7 +563,7 @@ export default function StartJourneyPage() {
           {/* ============================================ */}
 
           <ScrollReveal>
-            <h1 className="text-3xl md:text-4xl font-bold pt-12">
+            <h1 id="useful-info" className="text-3xl md:text-4xl font-bold pt-12">
               {t('usefulInfo.title')}
             </h1>
             <p className="italic mt-2">{t('usefulInfo.ifYouChoose')}</p>

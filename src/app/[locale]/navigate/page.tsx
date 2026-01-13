@@ -7,7 +7,9 @@ import { ScrollReveal } from "@/components/animations";
 
 const flowPages = [
   { href: "/", labelKey: "welcome" },
-  { href: "/start-journey", labelKey: "ourStory" },
+  { href: "/start-journey#our-story", labelKey: "ourStory" },
+  { href: "/start-journey#what-is", labelKey: "whatIs" },
+  { href: "/start-journey#useful-info", labelKey: "usefulInfo" },
   { href: "/start-journey/find-anchor", labelKey: "findAnchor" },
   { href: "/start-journey/find-medicine", labelKey: "findMedicine" },
   { href: "/start-journey/ledger", labelKey: "ledger" },

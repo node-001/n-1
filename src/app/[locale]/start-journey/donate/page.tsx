@@ -1,16 +1,57 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { Heart, Compass } from "lucide-react";
+import { Heart, Compass, Send, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { ScrollReveal } from "@/components/animations";
 import { DonationModal } from "@/components/donations/donation-modal";
 
 export default function DonatePage() {
   const t = useTranslations('donate');
   const tc = useTranslations('common');
+
+  // Team application form state
+  const [teamName, setTeamName] = useState("");
+  const [teamEmail, setTeamEmail] = useState("");
+  const [teamMessage, setTeamMessage] = useState("");
+  const [teamSubmitting, setTeamSubmitting] = useState(false);
+  const [teamSubmitted, setTeamSubmitted] = useState(false);
+  const [teamError, setTeamError] = useState<string | null>(null);
+
+  const handleTeamSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTeamError(null);
+    setTeamSubmitting(true);
+
+    try {
+      const res = await fetch("/api/team", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: teamName,
+          email: teamEmail,
+          message: teamMessage,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to submit");
+      }
+
+      setTeamSubmitted(true);
+    } catch (err) {
+      setTeamError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setTeamSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-cormorant)]">
@@ -91,17 +132,57 @@ export default function DonatePage() {
             <p>{t('weBelieve')}</p>
           </ScrollReveal>
 
+          {/* Team Application Form */}
           <ScrollReveal>
-            <p>
-              {t('ifCallingResonates')}{" "}
-              <a
-                href="mailto:node001n1@proton.me"
-                className="underline hover:text-foreground/70"
-              >
-                node001n1@proton.me
-              </a>{" "}
-              {t('tellMeAbout')}
-            </p>
+            {teamSubmitted ? (
+              <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-6 text-center">
+                <CheckCircle className="h-8 w-8 mx-auto mb-3 text-emerald-500" />
+                <p className="font-semibold">{t('teamSubmitted')}</p>
+                <p className="text-foreground/70 text-base mt-1">{t('teamSubmittedMessage')}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleTeamSubmit} className="space-y-4 font-[family-name:var(--font-geist-sans)] text-base">
+                <div className="space-y-2">
+                  <Label htmlFor="teamName">{t('teamName')}</Label>
+                  <Input
+                    id="teamName"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    placeholder={t('teamNamePlaceholder')}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="teamEmail">{t('teamEmail')}</Label>
+                  <Input
+                    id="teamEmail"
+                    type="email"
+                    value={teamEmail}
+                    onChange={(e) => setTeamEmail(e.target.value)}
+                    placeholder={t('teamEmailPlaceholder')}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="teamMessage">{t('teamMessage')}</Label>
+                  <Textarea
+                    id="teamMessage"
+                    value={teamMessage}
+                    onChange={(e) => setTeamMessage(e.target.value)}
+                    placeholder={t('teamMessagePlaceholder')}
+                    rows={4}
+                    required
+                  />
+                </div>
+                {teamError && (
+                  <p className="text-destructive text-sm">{teamError}</p>
+                )}
+                <Button type="submit" disabled={teamSubmitting} className="gap-2">
+                  <Send className="h-4 w-4" />
+                  {teamSubmitting ? t('teamSending') : t('teamSend')}
+                </Button>
+              </form>
+            )}
           </ScrollReveal>
 
           <ScrollReveal>

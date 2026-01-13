@@ -68,6 +68,41 @@ export default function FindMedicinePage() {
             <p className="text-foreground/70 pt-4">{t('keepInMind')}</p>
           </ScrollReveal>
 
+          {/* Special message for those without ketamine access */}
+          <ScrollReveal>
+            <div className="pt-8 space-y-4">
+              <p className="font-bold">{t('specialMessageTitle')}</p>
+              <p>{t('specialMessage1')}</p>
+              <p>{t('specialMessage2')}</p>
+              <p>
+                {t('specialMessage3Part1')}{" "}
+                <Link
+                  href="/apply/prescriber"
+                  className="underline hover:text-foreground/70"
+                >
+                  {t('prescriberApplicationLink')}
+                </Link>
+                {" "}{t('specialMessage3Part2')}
+              </p>
+              <p>{t('specialMessage4')}</p>
+            </div>
+          </ScrollReveal>
+
+          {/* For Prescribers */}
+          <ScrollReveal>
+            <div className="pt-8 border-t border-foreground/10">
+              <p className="font-bold pt-4">{t('forPrescribersTitle')}</p>
+              <p className="mt-4">{t('forPrescribersText')}</p>
+              <Link
+                href="/apply/prescriber"
+                className="inline-flex items-center gap-2 mt-4 text-foreground/80 hover:text-foreground transition-colors underline"
+              >
+                {t('applyToDirectory')}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+
           {/* Closing emojis */}
           <ScrollReveal>
             <div className="pt-8">

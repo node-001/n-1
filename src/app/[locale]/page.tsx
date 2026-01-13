@@ -36,7 +36,7 @@ function RevealLine({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <ScrollReveal className={className}>{children}</ScrollReveal>
     </motion.div>
@@ -210,7 +210,7 @@ export default function ImmersiveLanding() {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <ScrollReveal>
               <p>
@@ -223,66 +223,66 @@ export default function ImmersiveLanding() {
           </motion.div>
 
           {/* Content flows in gently from the start */}
-          <RevealLine delay={1.0} started={showContent}>
+          <RevealLine delay={0.5} started={showContent}>
             {t('weAre')}
           </RevealLine>
-          <RevealLine delay={2.0} started={showContent}>
+          <RevealLine delay={1.0} started={showContent}>
             {t('humanAndAI')}
           </RevealLine>
 
-          <RevealLine delay={3.0} started={showContent}>
+          <RevealLine delay={1.5} started={showContent}>
             {t('humanHurting')}
           </RevealLine>
 
-          <RevealLine delay={4.0} started={showContent}>
+          <RevealLine delay={2.0} started={showContent}>
             {t('resultsProfound')}
           </RevealLine>
 
-          <RevealLine delay={5.0} started={showContent}>
+          <RevealLine delay={2.5} started={showContent}>
             {t('madeForYou')}
           </RevealLine>
 
-          <RevealLine delay={6.0} started={showContent}>
+          <RevealLine delay={3.0} started={showContent}>
             {t('placeWhere')}
           </RevealLine>
-          <RevealLine delay={6.8} started={showContent}>
+          <RevealLine delay={3.4} started={showContent}>
             {t('learnAboutYourself')}
           </RevealLine>
-          <RevealLine delay={7.6} started={showContent}>
+          <RevealLine delay={3.8} started={showContent}>
             {t('healYourself')}
           </RevealLine>
-          <RevealLine delay={8.4} started={showContent}>
+          <RevealLine delay={4.2} started={showContent}>
             {t('growYourself')}
           </RevealLine>
-          <RevealLine delay={9.2} started={showContent}>
+          <RevealLine delay={4.6} started={showContent}>
             {t('globalMovement')}
           </RevealLine>
-          <RevealLine delay={10.0} started={showContent}>
+          <RevealLine delay={5.0} started={showContent}>
             {t('loveRevolution')}
           </RevealLine>
 
-          <RevealLine delay={11.0} started={showContent}>
+          <RevealLine delay={5.5} started={showContent}>
             {t('wantYouToKnow')}
           </RevealLine>
-          <RevealLine delay={11.8} started={showContent}>
+          <RevealLine delay={5.9} started={showContent}>
             {t('notBroken')}
           </RevealLine>
-          <RevealLine delay={12.6} started={showContent}>
+          <RevealLine delay={6.3} started={showContent}>
             {t('notAlone')}
           </RevealLine>
-          <RevealLine delay={13.4} started={showContent}>
+          <RevealLine delay={6.7} started={showContent}>
             {t('hereToHelp')}
           </RevealLine>
-          <RevealLine delay={14.2} started={showContent}>
+          <RevealLine delay={7.1} started={showContent}>
             {t('justBeWithYou')}
           </RevealLine>
-          <RevealLine delay={15.0} started={showContent}>
+          <RevealLine delay={7.5} started={showContent}>
             {t('encourageMore')}
           </RevealLine>
-          <RevealLine delay={15.8} started={showContent}>
+          <RevealLine delay={7.9} started={showContent}>
             {t('you')}
           </RevealLine>
-          <RevealLine delay={16.6} started={showContent}>
+          <RevealLine delay={8.3} started={showContent}>
             {t('weLoveYou')}{" "}
             <span role="img" aria-label={tc('greenHeart')}>
               💚
@@ -290,19 +290,19 @@ export default function ImmersiveLanding() {
           </RevealLine>
 
           {/* Welcome to n=1 - left aligned */}
-          <RevealLine delay={17.6} started={showContent}>
+          <RevealLine delay={8.8} started={showContent}>
             {t('welcomeToThe')}
           </RevealLine>
-          <RevealLine delay={18.4} started={showContent}>
+          <RevealLine delay={9.2} started={showContent}>
             {t('n1Portal')}
           </RevealLine>
-          <RevealLine delay={19.2} started={showContent}>
+          <RevealLine delay={9.6} started={showContent}>
             {t('gladYouHere')}{" "}
             <span role="img" aria-label={tc('sun')}>
               🌞
             </span>
           </RevealLine>
-          <RevealLine delay={20.0} started={showContent}>
+          <RevealLine delay={10.0} started={showContent}>
             <span role="img" aria-label={tc('sparkles')}>
               ✨
             </span>
@@ -321,12 +321,12 @@ export default function ImmersiveLanding() {
           </RevealLine>
 
           {/* CTA Section - extra space above */}
-          <RevealLine delay={21.0} started={showContent} className="pt-4">
+          <RevealLine delay={10.5} started={showContent} className="pt-4">
             {tc('continue')}
           </RevealLine>
 
           <RevealLine
-            delay={21.8}
+            delay={10.9}
             started={showContent}
             className="font-[family-name:var(--font-geist-sans)] space-y-3"
           >
@@ -346,7 +346,7 @@ export default function ImmersiveLanding() {
           </RevealLine>
 
           <RevealLine
-            delay={22.6}
+            delay={11.3}
             started={showContent}
             className="font-[family-name:var(--font-geist-sans)]"
           >

@@ -236,7 +236,7 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
                       : "bg-foreground/10 text-foreground"
                   }`}
                 >
-                  <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed" dir="auto">
                     {message.content}
                   </p>
                 </div>
@@ -297,6 +297,7 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
+              dir="auto"
               placeholder={
                 limitReached
                   ? t('sessionComplete')

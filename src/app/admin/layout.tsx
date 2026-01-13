@@ -3,18 +3,20 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, Users, MessageSquare, LayoutDashboard, LogOut, Menu, Wallet } from "lucide-react";
+import { BookOpen, Users, MessageSquare, LayoutDashboard, LogOut, Menu, Wallet, UserPlus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { ThemeProvider } from "@/providers/theme-provider";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 const adminNavItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/stories", label: "Stories", icon: BookOpen },
   { href: "/admin/prescribers", label: "Prescribers", icon: Users },
+  { href: "/admin/team", label: "Team Apps", icon: UserPlus },
   { href: "/admin/donations", label: "Donations", icon: Wallet },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },
 ];
@@ -138,68 +140,103 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   // Show login page without layout
   if (isLoginPage) {
-    return <>{children}</>;
+    return (
+      <html lang="en" suppressHydrationWarning>
+        <body className="antialiased min-h-screen flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    );
   }
 
   // Show loading while checking auth
   if (isAuthenticated === null) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="space-y-4 text-center">
-          <Skeleton className="h-8 w-32 mx-auto" />
-          <Skeleton className="h-4 w-48 mx-auto" />
-        </div>
-      </div>
+      <html lang="en" suppressHydrationWarning>
+        <body className="antialiased min-h-screen flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="min-h-screen bg-background flex items-center justify-center">
+              <div className="space-y-4 text-center">
+                <Skeleton className="h-8 w-32 mx-auto" />
+                <Skeleton className="h-4 w-48 mx-auto" />
+              </div>
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Mobile Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl md:hidden">
-        <div className="flex h-14 items-center justify-between px-4">
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-64 p-0 flex flex-col">
-              <VisuallyHidden.Root>
-                <SheetTitle>Admin Navigation</SheetTitle>
-              </VisuallyHidden.Root>
-              <SidebarContent
-                pathname={pathname}
-                onLogout={handleLogout}
-                isLoggingOut={isLoggingOut}
-              />
-            </SheetContent>
-          </Sheet>
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-semibold text-lg tracking-tight">
-              n<span className="text-primary">=</span>1
-            </span>
-            <span className="text-xs text-muted-foreground">Admin</span>
-          </Link>
-        </div>
-      </header>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased min-h-screen flex flex-col">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-background">
+            {/* Mobile Header */}
+            <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl md:hidden">
+              <div className="flex h-14 items-center justify-between px-4">
+                <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Menu className="h-5 w-5" />
+                      <span className="sr-only">Toggle menu</span>
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-64 p-0 flex flex-col">
+                    <VisuallyHidden.Root>
+                      <SheetTitle>Admin Navigation</SheetTitle>
+                    </VisuallyHidden.Root>
+                    <SidebarContent
+                      pathname={pathname}
+                      onLogout={handleLogout}
+                      isLoggingOut={isLoggingOut}
+                    />
+                  </SheetContent>
+                </Sheet>
+                <Link href="/" className="flex items-center gap-2">
+                  <span className="font-semibold text-lg tracking-tight">
+                    n<span className="text-primary">=</span>1
+                  </span>
+                  <span className="text-xs text-muted-foreground">Admin</span>
+                </Link>
+              </div>
+            </header>
 
-      <div className="flex">
-        {/* Desktop Sidebar */}
-        <aside className="hidden md:flex fixed inset-y-0 left-0 w-64 border-r border-border/40 bg-card/30 flex-col">
-          <SidebarContent
-            pathname={pathname}
-            onLogout={handleLogout}
-            isLoggingOut={isLoggingOut}
-          />
-        </aside>
+            <div className="flex">
+              {/* Desktop Sidebar */}
+              <aside className="hidden md:flex fixed inset-y-0 left-0 w-64 border-r border-border/40 bg-card/30 flex-col">
+                <SidebarContent
+                  pathname={pathname}
+                  onLogout={handleLogout}
+                  isLoggingOut={isLoggingOut}
+                />
+              </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 md:ml-64 p-4 md:p-6 min-h-screen w-full max-w-full overflow-x-hidden">
-          {children}
-        </main>
-      </div>
-    </div>
+              {/* Main Content */}
+              <main className="flex-1 md:ml-64 p-4 md:p-6 min-h-screen w-full max-w-full overflow-x-hidden">
+                {children}
+              </main>
+            </div>
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

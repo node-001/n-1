@@ -17,6 +17,10 @@ const flowPages = [
   { href: "/start-journey/donate", labelKey: "donate" },
 ];
 
+const additionalPages = [
+  { href: "/apply/prescriber", labelKey: "prescriberApply" },
+];
+
 export default function NavigatePage() {
   const t = useTranslations('navigate');
   const tc = useTranslations('common');
@@ -71,6 +75,31 @@ export default function NavigatePage() {
                 </Link>
               ))}
             </nav>
+          </ScrollReveal>
+
+          {/* Additional Pages */}
+          <ScrollReveal>
+            <div className="pt-8 border-t border-foreground/10">
+              <h2 className="text-xl font-semibold pt-4 mb-4">{t('additionalPages')}</h2>
+              <nav className="space-y-4">
+                {additionalPages.map((page) => (
+                  <Link
+                    key={page.href}
+                    href={page.href}
+                    className="block p-4 rounded-xl border border-foreground/10 hover:border-foreground/30 hover:bg-foreground/5 transition-all group"
+                  >
+                    <div>
+                      <span className="font-semibold group-hover:text-foreground transition-colors">
+                        {t(`pages.${page.labelKey}.label`)}
+                      </span>
+                      <p className="text-foreground/50 text-base mt-1">
+                        {t(`pages.${page.labelKey}.description`)}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </ScrollReveal>
 
           {/* Closing */}

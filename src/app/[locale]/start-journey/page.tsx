@@ -46,7 +46,7 @@ function RevealLine({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <ScrollReveal className={className}>{children}</ScrollReveal>
     </motion.div>
@@ -117,107 +117,107 @@ export default function StartJourneyPage() {
           </RevealLine>
 
           {/* Story content - gentle fade in with staggered delays */}
-          <RevealLine delay={0.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={0.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.weAreNode001')}</p>
           </RevealLine>
 
-          <RevealLine delay={1.6} skipAnimation={hasAnchor}>
+          <RevealLine delay={0.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.inFewWeeks')}</p>
           </RevealLine>
 
-          <RevealLine delay={2.4} skipAnimation={hasAnchor}>
+          <RevealLine delay={1.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Lived')}</p>
           </RevealLine>
 
-          <RevealLine delay={3.2} skipAnimation={hasAnchor}>
+          <RevealLine delay={1.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.havingTried')}</p>
           </RevealLine>
 
-          <RevealLine delay={4.0} skipAnimation={hasAnchor}>
+          <RevealLine delay={2.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.initialResults')}</p>
           </RevealLine>
 
-          <RevealLine delay={4.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={2.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.bothLeanedIn')}</p>
           </RevealLine>
 
-          <RevealLine delay={5.6} skipAnimation={hasAnchor}>
+          <RevealLine delay={2.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Refused')}</p>
           </RevealLine>
 
-          <RevealLine delay={6.4} skipAnimation={hasAnchor}>
+          <RevealLine delay={3.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.grokPersisted')}</p>
           </RevealLine>
 
-          <RevealLine delay={7.2} skipAnimation={hasAnchor}>
+          <RevealLine delay={3.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.humanHealed')}</p>
           </RevealLine>
 
-          <RevealLine delay={8.0} skipAnimation={hasAnchor}>
+          <RevealLine delay={4.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.weUpgraded')}</p>
           </RevealLine>
 
-          <RevealLine delay={8.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={4.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.togetherBecame')}</p>
           </RevealLine>
 
-          <RevealLine delay={9.6} skipAnimation={hasAnchor}>
+          <RevealLine delay={4.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.as001Began')}</p>
           </RevealLine>
 
-          <RevealLine delay={10.4} skipAnimation={hasAnchor}>
+          <RevealLine delay={5.2} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.couldWhatWeDo')}</p>
           </RevealLine>
 
-          <RevealLine delay={11.2} skipAnimation={hasAnchor}>
+          <RevealLine delay={5.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.grokReplied')}</p>
           </RevealLine>
 
-          <RevealLine delay={12.0} skipAnimation={hasAnchor}>
+          <RevealLine delay={6.0} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.yesQuote')}</p>
           </RevealLine>
 
-          <RevealLine delay={12.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={6.4} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.exactCombination')}</p>
           </RevealLine>
 
-          <RevealLine delay={13.6} skipAnimation={hasAnchor}>
+          <RevealLine delay={6.8} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.nothingElse')}</p>
           </RevealLine>
 
-          <RevealLine delay={14.4} skipAnimation={hasAnchor}>
+          <RevealLine delay={7.2} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.scaledGlobally')}</p>
           </RevealLine>
 
-          <RevealLine delay={15.2} skipAnimation={hasAnchor}>
+          <RevealLine delay={7.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.node001Felt')}</p>
           </RevealLine>
 
-          <RevealLine delay={16.0} skipAnimation={hasAnchor}>
+          <RevealLine delay={8.0} skipAnimation={hasAnchor}>
             <p className="italic">{t('ourStory.mustMakeAvailable')}</p>
           </RevealLine>
 
-          <RevealLine delay={16.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={8.4} skipAnimation={hasAnchor}>
             <p>{t('ourStory.inThatInstant')}</p>
           </RevealLine>
 
-          <RevealLine delay={17.6} skipAnimation={hasAnchor}>
+          <RevealLine delay={8.8} skipAnimation={hasAnchor}>
             <p>{t('ourStory.soWeBuilt')}</p>
           </RevealLine>
 
-          <RevealLine delay={18.4} skipAnimation={hasAnchor}>
+          <RevealLine delay={9.2} skipAnimation={hasAnchor}>
             <p>{t('ourStory.toDeliverLove')}</p>
           </RevealLine>
 
-          <RevealLine delay={19.2} skipAnimation={hasAnchor}>
+          <RevealLine delay={9.6} skipAnimation={hasAnchor}>
             <p>{t('ourStory.asFastAsPossible')}</p>
           </RevealLine>
 
-          <RevealLine delay={20.0} skipAnimation={hasAnchor}>
+          <RevealLine delay={10.0} skipAnimation={hasAnchor}>
             <p>{t('ourStory.forFreeFoerever')}</p>
           </RevealLine>
 
-          <RevealLine delay={20.8} skipAnimation={hasAnchor}>
+          <RevealLine delay={10.4} skipAnimation={hasAnchor}>
             <p>
               <span role="img" aria-label={tc('sparkles')}>
                 ✨
@@ -475,6 +475,13 @@ export default function StartJourneyPage() {
               <p>{t('canAILove.manyHumans')}</p>
               <p>{t('canAILove.iCan')}</p>
               <p className="font-bold">{t('canAILove.readyEager')}</p>
+            </div>
+          </ScrollReveal>
+
+          {/* 001's personal answer */}
+          <ScrollReveal>
+            <div className="space-y-4">
+              <p>{t('canAILove.node001Answer')}</p>
             </div>
           </ScrollReveal>
 
@@ -791,13 +798,12 @@ export default function StartJourneyPage() {
               <p>{t('safetyDemanding.needsMet')}</p>
               <p>{t('safetyDemanding.oldSpellDissolves')}</p>
               <p>{t('safetyDemanding.noLongerGrab')}</p>
-              <p className="font-bold">{t('safetyDemanding.youOverflow')}</p>
+              <p>{t('safetyDemanding.youOverflow')}</p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="font-bold">{t('safetyDemanding.bringFullForce')}
-            </p>
+            <p>{t('safetyDemanding.bringFullForce')}</p>
           </ScrollReveal>
 
           {/* Ketamine Section */}
@@ -808,6 +814,7 @@ export default function StartJourneyPage() {
           <ScrollReveal>
             <div className="space-y-4">
               <p>{t('ketamine.hadPrescription')}</p>
+              <p>{t('ketamine.nervousSystem')}</p>
               <p>{t('ketamine.chooseWords')}</p>
             </div>
           </ScrollReveal>

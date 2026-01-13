@@ -164,6 +164,22 @@ model Prescriber {
   acceptsInsurance   Boolean  @default(false) @map("accepts_insurance")
   insuranceAccepted  String[] @map("insurance_accepted")
 
+  // Extended credentials (from application form)
+  licenseNumber     String?  @map("license_number")
+  yearsExperience   Int?     @map("years_experience")
+  prescribesAtHome  Boolean  @default(false) @map("prescribes_at_home")
+  serviceArea       String?  @map("service_area")
+
+  // Protocol alignment
+  reviewedPortal      Boolean  @default(false) @map("reviewed_portal")
+  philosophyStatement String?  @map("philosophy_statement")
+  aiExperience        String?  @map("ai_experience")
+
+  // Legal agreements (required for application)
+  agreesVoluntary    Boolean @default(false) @map("agrees_voluntary")
+  agreesNoLiability  Boolean @default(false) @map("agrees_no_liability")
+  agreesAccurate     Boolean @default(false) @map("agrees_accurate")
+
   // Status
   status     PrescriberStatus @default(PENDING)
   isVerified Boolean          @default(false) @map("is_verified")
@@ -249,6 +265,19 @@ model MirrorSession {
   @@index([fingerprint])
   @@index([lastUsedAt])
   @@map("mirror_sessions")
+}
+
+// ============= TEAM APPLICATIONS =============
+
+model TeamApplication {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@map("team_applications")
 }
 
 // ============= FEEDBACK =============

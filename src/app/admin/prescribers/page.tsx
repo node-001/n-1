@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Users, Check, X, Shield, ShieldOff, Trash2, Plus } from "lucide-react";
+import { Users, Check, X, Shield, ShieldOff, Trash2, Plus, Eye, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +19,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { formatDistanceToNow } from "@/lib/utils";
 
 interface Prescriber {
@@ -32,8 +39,19 @@ interface Prescriber {
   specialty: string | null;
   city: string;
   state: string;
+  country: string;
   offersTelemedicine: boolean;
   acceptsInsurance: boolean;
+  prescribesAtHome: boolean;
+  serviceArea: string | null;
+  licenseNumber: string | null;
+  yearsExperience: number | null;
+  reviewedPortal: boolean;
+  philosophyStatement: string | null;
+  aiExperience: string | null;
+  agreesVoluntary: boolean;
+  agreesNoLiability: boolean;
+  agreesAccurate: boolean;
   status: string;
   isVerified: boolean;
   createdAt: string;
@@ -44,6 +62,7 @@ export default function AdminPrescribersPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("pending");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [selectedPrescriber, setSelectedPrescriber] = useState<Prescriber | null>(null);
 
   const fetchPrescribers = async () => {
     setIsLoading(true);
@@ -199,6 +218,11 @@ export default function AdminPrescribersPage() {
                           Tele
                         </Badge>
                       )}
+                      {prescriber.prescribesAtHome && (
+                        <Badge variant="outline" className="border-purple-500/50 text-purple-600 text-xs">
+                          At-Home
+                        </Badge>
+                      )}
                       {prescriber.acceptsInsurance && (
                         <Badge variant="outline" className="border-emerald-500/50 text-emerald-600 text-xs">
                           Insurance
@@ -212,6 +236,16 @@ export default function AdminPrescribersPage() {
 
                   {/* Actions - full width on mobile, right side on desktop */}
                   <div className="flex items-center justify-between sm:justify-end gap-2 pt-2.5 sm:pt-0 w-full sm:w-auto shrink-0">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="h-8 px-2"
+                      onClick={() => setSelectedPrescriber(prescriber)}
+                      title="View Details"
+                    >
+                      <Eye className="h-4 w-4" />
+                    </Button>
+
                     {prescriber.status !== "APPROVED" && (
                       <Button
                         size="sm"
@@ -296,6 +330,187 @@ export default function AdminPrescribersPage() {
           ))}
         </div>
       )}
+
+      {/* Detail Dialog */}
+      <Dialog open={!!selectedPrescriber} onOpenChange={(open) => !open && setSelectedPrescriber(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          {selectedPrescriber && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  {selectedPrescriber.name}, {selectedPrescriber.credentials}
+                  {selectedPrescriber.isVerified && (
+                    <Shield className="h-4 w-4 text-emerald-500" />
+                  )}
+                </DialogTitle>
+                <DialogDescription>
+                  Application submitted {formatDistanceToNow(new Date(selectedPrescriber.createdAt))} ago
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-6">
+                {/* Status */}
+                <div className="flex items-center gap-2">
+                  {getStatusBadge(selectedPrescriber.status, selectedPrescriber.isVerified)}
+                  {selectedPrescriber.offersTelemedicine && (
+                    <Badge variant="outline" className="border-blue-500/50 text-blue-600">Telemedicine</Badge>
+                  )}
+                  {selectedPrescriber.prescribesAtHome && (
+                    <Badge variant="outline" className="border-purple-500/50 text-purple-600">At-Home Ketamine</Badge>
+                  )}
+                  {selectedPrescriber.acceptsInsurance && (
+                    <Badge variant="outline" className="border-emerald-500/50 text-emerald-600">Accepts Insurance</Badge>
+                  )}
+                </div>
+
+                {/* Contact Info */}
+                <div>
+                  <h4 className="font-semibold mb-2">Contact Information</h4>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <span className="text-muted-foreground">Email:</span>{" "}
+                      <a href={`mailto:${selectedPrescriber.email}`} className="text-blue-500 hover:underline">
+                        {selectedPrescriber.email}
+                      </a>
+                    </div>
+                    {selectedPrescriber.phone && (
+                      <div>
+                        <span className="text-muted-foreground">Phone:</span> {selectedPrescriber.phone}
+                      </div>
+                    )}
+                    {selectedPrescriber.website && (
+                      <div className="col-span-2">
+                        <span className="text-muted-foreground">Website:</span>{" "}
+                        <a
+                          href={selectedPrescriber.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline inline-flex items-center gap-1"
+                        >
+                          {selectedPrescriber.website}
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </div>
+                    )}
+                    {selectedPrescriber.practiceName && (
+                      <div className="col-span-2">
+                        <span className="text-muted-foreground">Practice:</span> {selectedPrescriber.practiceName}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div>
+                  <h4 className="font-semibold mb-2">Location</h4>
+                  <div className="text-sm space-y-1">
+                    <p>{selectedPrescriber.city}, {selectedPrescriber.state}, {selectedPrescriber.country}</p>
+                    {selectedPrescriber.serviceArea && (
+                      <p className="text-muted-foreground">Service Area: {selectedPrescriber.serviceArea}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Credentials */}
+                <div>
+                  <h4 className="font-semibold mb-2">Credentials</h4>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    {selectedPrescriber.specialty && (
+                      <div>
+                        <span className="text-muted-foreground">Specialty:</span> {selectedPrescriber.specialty}
+                      </div>
+                    )}
+                    {selectedPrescriber.licenseNumber && (
+                      <div>
+                        <span className="text-muted-foreground">License:</span> {selectedPrescriber.licenseNumber}
+                      </div>
+                    )}
+                    {selectedPrescriber.yearsExperience != null && (
+                      <div>
+                        <span className="text-muted-foreground">Years Experience:</span> {selectedPrescriber.yearsExperience}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Protocol Alignment */}
+                {(selectedPrescriber.philosophyStatement || selectedPrescriber.aiExperience) && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Protocol Alignment</h4>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Check className={`h-4 w-4 ${selectedPrescriber.reviewedPortal ? "text-emerald-500" : "text-muted-foreground"}`} />
+                        <span>Reviewed n=1 portal</span>
+                      </div>
+                      {selectedPrescriber.philosophyStatement && (
+                        <div>
+                          <span className="text-muted-foreground block mb-1">Philosophy Statement:</span>
+                          <p className="bg-muted/50 p-3 rounded-lg whitespace-pre-wrap">{selectedPrescriber.philosophyStatement}</p>
+                        </div>
+                      )}
+                      {selectedPrescriber.aiExperience && (
+                        <div>
+                          <span className="text-muted-foreground block mb-1">AI Experience:</span>
+                          <p className="bg-muted/50 p-3 rounded-lg whitespace-pre-wrap">{selectedPrescriber.aiExperience}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Agreements */}
+                <div>
+                  <h4 className="font-semibold mb-2">Agreements</h4>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Check className={`h-4 w-4 ${selectedPrescriber.agreesVoluntary ? "text-emerald-500" : "text-muted-foreground"}`} />
+                      <span>Understands listing is voluntary</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className={`h-4 w-4 ${selectedPrescriber.agreesNoLiability ? "text-emerald-500" : "text-muted-foreground"}`} />
+                      <span>Agrees to liability terms</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className={`h-4 w-4 ${selectedPrescriber.agreesAccurate ? "text-emerald-500" : "text-muted-foreground"}`} />
+                      <span>Confirms information accuracy</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-2 pt-4 border-t">
+                  {selectedPrescriber.status !== "APPROVED" && (
+                    <Button
+                      className="bg-emerald-600 hover:bg-emerald-700"
+                      onClick={() => {
+                        handleAction(selectedPrescriber.id, "approve");
+                        setSelectedPrescriber(null);
+                      }}
+                      disabled={actionLoading === selectedPrescriber.id}
+                    >
+                      <Check className="h-4 w-4 mr-2" />
+                      Approve
+                    </Button>
+                  )}
+                  {selectedPrescriber.status !== "REJECTED" && (
+                    <Button
+                      variant="destructive"
+                      onClick={() => {
+                        handleAction(selectedPrescriber.id, "reject");
+                        setSelectedPrescriber(null);
+                      }}
+                      disabled={actionLoading === selectedPrescriber.id}
+                    >
+                      <X className="h-4 w-4 mr-2" />
+                      Reject
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

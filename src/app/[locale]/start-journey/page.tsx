@@ -21,10 +21,14 @@ function RevealLine({
   className?: string;
   skipAnimation?: boolean;
 }) {
-  const [revealed, setRevealed] = useState(skipAnimation);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    if (skipAnimation) return;
+    // If skipping animation, reveal immediately
+    if (skipAnimation) {
+      setRevealed(true);
+      return;
+    }
     const timer = setTimeout(() => setRevealed(true), delay * 1000);
     return () => clearTimeout(timer);
   }, [delay, skipAnimation]);

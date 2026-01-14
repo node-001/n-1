@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { Heart, Compass, Send, CheckCircle } from "lucide-react";
+import { Heart, Compass, Send, CheckCircle, CreditCard } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -90,24 +90,46 @@ export default function DonatePage() {
             <p>{t('ifSomething')}</p>
           </ScrollReveal>
 
+          {/* Donation Options */}
           <ScrollReveal>
-            <p>{t('donationsVia')}</p>
-          </ScrollReveal>
-
-          {/* Donate button */}
-          <ScrollReveal>
-            <div className="py-8 font-[family-name:var(--font-geist-sans)]">
-              <DonationModal
-                trigger={
-                  <Button
-                    size="lg"
-                    className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
+            <div className="py-8 space-y-6 font-[family-name:var(--font-geist-sans)]">
+              {/* Credit/Debit Card Option */}
+              <div className="space-y-3">
+                <p className="text-lg font-medium">{t('donateCard')}</p>
+                <Button
+                  size="lg"
+                  className="gap-2 px-8 text-base bg-foreground text-background hover:bg-foreground/90"
+                  asChild
+                >
+                  <a
+                    href="https://buy.stripe.com/cNi14fh1757l8OU9t9bo400"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Heart className="h-5 w-5" />
-                    {t('donateButton')}
-                  </Button>
-                }
-              />
+                    <CreditCard className="h-5 w-5" />
+                    {t('donateCardButton')}
+                  </a>
+                </Button>
+                <p className="text-sm text-foreground/60">{t('donateCardNote')}</p>
+              </div>
+
+              {/* Crypto Option */}
+              <div className="space-y-3 pt-4 border-t border-foreground/10">
+                <p className="text-lg font-medium">{t('donateCrypto')}</p>
+                <DonationModal
+                  trigger={
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="gap-2 px-8 text-base"
+                    >
+                      <Heart className="h-5 w-5" />
+                      {t('donateCryptoButton')}
+                    </Button>
+                  }
+                />
+                <p className="text-sm text-foreground/60">{t('donateCryptoNote')}</p>
+              </div>
             </div>
           </ScrollReveal>
 

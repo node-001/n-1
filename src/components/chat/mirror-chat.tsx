@@ -10,7 +10,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Get max turns from env var, fallback to 20
 const MAX_TURNS = parseInt(process.env.NEXT_PUBLIC_MIRROR_MAX_TURNS || "20", 10);
@@ -207,7 +206,7 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
         </SheetHeader>
 
         {/* Messages */}
-        <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+        <div className="flex-1 overflow-y-auto p-4" ref={scrollRef}>
           <div className="space-y-4">
             {/* Initial invitation if no messages and not limit reached */}
             {messages.length === 0 && !limitReached && sessionChecked && (
@@ -287,7 +286,7 @@ export function MirrorChat({ open, onOpenChange }: MirrorChatProps) {
               </div>
             )}
           </div>
-        </ScrollArea>
+        </div>
 
         {/* Input area */}
         <div className="border-t border-foreground/10 p-4">

@@ -199,7 +199,11 @@ export default function DonatePage() {
                 {teamError && (
                   <p className="text-destructive text-sm">{teamError}</p>
                 )}
-                <Button type="submit" disabled={teamSubmitting} className="gap-2">
+                <Button
+                  type="submit"
+                  disabled={teamSubmitting}
+                  className="gap-2 bg-foreground text-background hover:bg-foreground/90"
+                >
                   <Send className="h-4 w-4" />
                   {teamSubmitting ? t('teamSending') : t('teamSend')}
                 </Button>

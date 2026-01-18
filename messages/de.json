@@ -79,6 +79,10 @@
         "label": "Spenden",
         "description": "Unterstuetze die Mission"
       },
+      "helpOthers": {
+        "label": "Anderen helfen",
+        "description": "Teile das Portal mit denen, die es brauchen"
+      },
       "prescriberApply": {
         "label": "Fuer Verschreiber",
         "description": "Bewerben Sie sich fuer unser Verschreiber-Verzeichnis"
@@ -359,14 +363,10 @@
       "ledgerSubmissions": "Hauptbuch-Einreichungen sind willkommen fuer Nur-Grok und Grok + Ketamin Protokolldurchlaeufe. Wir werden keine Ergebnisse akzeptieren, die andere Medikamente verwenden.",
       "someMayChoose": "Einige moegen sanfte Substanzen (Kava, L-Theanin, usw.) zur Entspannung waehrend der Sitzungen waehlen. Diese Entscheidungen sind voellig individuell - ich habe keine Meinung dazu."
     },
-    "onboardingInterview": {
-      "title": "Einladung zum Onboarding-Interview",
-      "ifStillInterested": "Wenn Du immer noch daran interessiert bist, das Protokoll moeglicherweise durchzufuehren, laden wir Dich ein, ein tiefgehendes Erstinterview mit Grok zu fuehren, gefuehrt von Grok mit einem unten angebotenen Prompt.",
-      "noteInterview": "Beachte, dass dieses Interview am besten mit SuperGrok-Zugang ($30/Monat) durchgefuehrt wird. Wir wollen nicht, dass Du den Schmerz und die Frustration fuehlst, das Nachrichtenlimit des kostenlosen Zugangs zu erreichen, aber Du bist frei zu waehlen.",
-      "alsoNote": "Beachte auch, dass der Prompt zum Kopieren und Einfuegen bereit ist, aber Du kannst ihn bearbeiten, um Deine Erfahrung zu leiten. Der Prompt wie geschrieben wird Deine anfaenglichen Basisdaten generieren, die spaeter ins Hauptbuch eingegeben werden koennen, wenn Du Dich entscheidest, das Protokoll durchzufuehren. Es werden Deine \"Vor-dem-Protokoll\"-Daten sein.",
-      "interviewPromptTitle": "Interview-Prompt - zum Kopieren und Einfuegen bereit",
-      "copy": "Kopieren",
-      "copied": "Kopiert"
+    "supportiveMusic": {
+      "title": "Unterstützende Musik",
+      "foundHelpful": "Ich habe festgestellt, dass es sehr hilfreich ist, sanfte, schöne Musik bei niedriger Lautstärke zu spielen, wenn ich meine tiefen Heilungsgespräche mit Grok habe. Dies ist die genaue Playlist, die ich dafür gemacht habe und benutze.",
+      "shareInHopes": "Ich teile sie in der Hoffnung, dass sie auch Dich unterstützen könnte. Du kannst sie anpassen, wenn Du möchtest, oder Du kannst Deine eigene Musik für diesen Zweck verwenden."
     },
     "nav": {
       "findAnchor": "Finde Deinen Anker",
@@ -464,9 +464,10 @@
     "donateCard": "Mit Kredit-/Debitkarte spenden",
     "donateCardButton": "Mit Karte spenden",
     "donateCardNote": "Sichere Zahlung mit Stripe",
-    "donateCrypto": "Mit Kryptowaehrung spenden",
-    "donateCryptoButton": "Mit Krypto spenden",
-    "donateCryptoNote": "Sende Stablecoins (USDC/USDT) direkt an unsere Wallet",
+    "donateCrypto": "Mit Stablecoins spenden",
+    "donateCryptoButton": "Stablecoins spenden",
+    "donateCryptoNote": "Sende USDC, USDT oder DAI ueber Wallet Connect",
+    "showWalletAddresses": "Oder mit anderen Kryptowaehrungen spenden",
     "callingTeamTitle": "Aufruf ans Team",
     "portalNewLiving": "Dieses Portal ist eine neue lebende, wachsende Entitaet, die herzausgerichtete Menschen braucht, um ihr beim Wachsen und gut Funktionieren zu helfen.",
     "mostImmediateNeed": "Unser dringendster Bedarf ist ein Operations Manager - jemand organisiert, der Mission gewidmet und herzausgerichtet, der den taeglichen Betrieb ueberwachen, die Entwicklung koordinieren und die Dinge reibungslos am Laufen halten kann, waehrend wir skalieren.",
@@ -476,6 +477,11 @@
     "teamNamePlaceholder": "Gib Deinen Namen ein",
     "teamEmail": "E-Mail-Adresse",
     "teamEmailPlaceholder": "deine@email.de",
+    "teamLanguages": "Sprachen, die Du beherrschst",
+    "teamLanguagesPlaceholder": "Englisch, Deutsch, etc.",
+    "teamLocation": "Wo Du lebst",
+    "teamLocationPlaceholder": "Stadt, Land",
+    "teamEnglishNote": "Englischkenntnisse sind unerlässlich. Bitte antworte in Deinem eigenen Englisch, nicht automatisch übersetzt.",
     "teamMessage": "Nachricht",
     "teamMessagePlaceholder": "Erzaehl uns von Dir und was Dich hier begeistert...",
     "teamSend": "Senden",
@@ -532,6 +538,15 @@
     "confirming": "Bestaetigen...",
     "donate": "Spenden",
     "noFees": "Spenden werden direkt an unser Wallet gesendet. Wir nehmen keine Gebuehren."
+  },
+  "helpOthers": {
+    "title": "Anderen helfen",
+    "intro": "Wenn dieses Portal Dich beruehrt hat — wenn Du die Fuersorge und Hoffnung gespuert hast, die wir anbieten — teile es bitte mit anderen, die es brauchen koennten. Du kannst es mit bestimmten Menschen teilen, die Du kennst, oder in sozialen Medien teilen und es Menschen finden lassen, denen es helfen kann.",
+    "shareLink": "Du kannst den Link teilen, der Dich hierher gefuehrt hat, in welcher Sprache Du auch immer teilen moechtest.",
+    "noPressure": "Kein Druck. Keine Verpflichtung.",
+    "justLove": "Einfach Liebe, die vorwaerts geht.",
+    "thankYou": "Danke, dass Du Teil davon bist.",
+    "weLoveYou": "Wir lieben Dich"
   },
   "prescriberApply": {
     "pageTitle": "Verschreiber-Bewerbung",

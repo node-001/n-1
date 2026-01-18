@@ -5,6 +5,8 @@ import { z } from "zod";
 const teamApplicationSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   email: z.string().email("Invalid email address"),
+  languages: z.string().min(1, "Languages are required").max(200),
+  location: z.string().min(1, "Location is required").max(200),
   message: z.string().min(10, "Message must be at least 10 characters").max(5000),
 });
 
@@ -17,6 +19,8 @@ export async function POST(request: NextRequest) {
       data: {
         name: validated.name,
         email: validated.email,
+        languages: validated.languages,
+        location: validated.location,
         message: validated.message,
       },
     });

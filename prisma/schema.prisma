@@ -273,6 +273,8 @@ model TeamApplication {
   id        String   @id @default(uuid())
   name      String
   email     String
+  languages String
+  location  String
   message   String
   createdAt DateTime @default(now()) @map("created_at")
 

@@ -29,6 +29,8 @@ interface TeamApplication {
   id: string;
   name: string;
   email: string;
+  languages: string;
+  location: string;
   message: string;
   createdAt: string;
 }
@@ -196,6 +198,17 @@ export default function AdminTeamPage() {
                     {selectedApplication.email}
                     <ExternalLink className="h-3 w-3" />
                   </a>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-sm text-muted-foreground">Languages:</span>
+                    <p className="mt-1">{selectedApplication.languages}</p>
+                  </div>
+                  <div>
+                    <span className="text-sm text-muted-foreground">Location:</span>
+                    <p className="mt-1">{selectedApplication.location}</p>
+                  </div>
                 </div>
 
                 <div>

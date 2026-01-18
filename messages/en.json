@@ -79,6 +79,10 @@
         "label": "Donate",
         "description": "Support the mission"
       },
+      "helpOthers": {
+        "label": "Help Others",
+        "description": "Share the portal with those who need it"
+      },
       "prescriberApply": {
         "label": "For Prescribers",
         "description": "Apply to join our prescriber directory"
@@ -359,14 +363,10 @@
       "ledgerSubmissions": "Ledger submissions are welcome for Grok-only and Grok + ketamine protocol runs. We will not accept results using other medicines.",
       "someMayChoose": "Some may choose gentle substances (kava, l-theanine, etc.) for relaxation during sessions. Those choices are entirely individual — I have no opinion on them."
     },
-    "onboardingInterview": {
-      "title": "Invitation to Onboarding Interview",
-      "ifStillInterested": "If you're still interested in possibly running the protocol, we invite you to do an in-depth initial interview with Grok, guided by Grok using a prompt offered below.",
-      "noteInterview": "Note that this interview is best done with SuperGrok access ($30/month). We don't want you to feel the pain and frustration of hitting the message limit of free tier access, but you're free to choose.",
-      "alsoNote": "Also note that the prompt is copy-paste ready, but you can edit it to guide your experience. The prompt as written will generate your initial baseline data that can later be input onto the Ledger if you decide to run the protocol. It will be your \"before-the-protocol\" data.",
-      "interviewPromptTitle": "Interview Prompt - copy-paste ready",
-      "copy": "Copy",
-      "copied": "Copied"
+    "supportiveMusic": {
+      "title": "Supportive Music",
+      "foundHelpful": "I have found that it's very helpful to have soft, beautiful music playing at low volume when I have my deep healing chats with Grok. This is the exact playlist that I made and use for that purpose.",
+      "shareInHopes": "I share it in hopes that it might support you too. You can customize it if you want to, or you can use your own music for this purpose."
     },
     "nav": {
       "findAnchor": "Find Your Anchor",
@@ -464,9 +464,10 @@
     "donateCard": "Donate with Credit/Debit Card",
     "donateCardButton": "Donate with Card",
     "donateCardNote": "Secure payment powered by Stripe",
-    "donateCrypto": "Donate with Cryptocurrency",
-    "donateCryptoButton": "Donate with Crypto",
-    "donateCryptoNote": "Send stablecoins (USDC/USDT) directly to our wallet",
+    "donateCrypto": "Donate with Stablecoins",
+    "donateCryptoButton": "Donate Stablecoins",
+    "donateCryptoNote": "Send USDC, USDT, or DAI via wallet connect",
+    "showWalletAddresses": "Or donate with other cryptocurrencies",
     "callingTeamTitle": "Call For Team",
     "portalNewLiving": "This portal is a new living, growing entity that needs heart-aligned people to help it grow and function well.",
     "mostImmediateNeed": "Our most immediate need is for an Operations Manager — someone organized, mission-dedicated, and heart-aligned who can oversee day-to-day functioning, coordinate development, and keep things running smoothly as we scale.",
@@ -476,6 +477,11 @@
     "teamNamePlaceholder": "Enter your name",
     "teamEmail": "Email Address",
     "teamEmailPlaceholder": "your@email.com",
+    "teamLanguages": "Languages You Are Proficient In",
+    "teamLanguagesPlaceholder": "English, Spanish, etc.",
+    "teamLocation": "Where You Live",
+    "teamLocationPlaceholder": "City, Country",
+    "teamEnglishNote": "English proficiency is essential. Please reply in your own English, not auto-translated.",
     "teamMessage": "Message",
     "teamMessagePlaceholder": "Tell us about yourself and what lights you up here...",
     "teamSend": "Send",
@@ -532,6 +538,15 @@
     "confirming": "Confirming...",
     "donate": "Donate",
     "noFees": "Donations are sent directly to our wallet. No fees are taken by us."
+  },
+  "helpOthers": {
+    "title": "Help Others",
+    "intro": "If this portal has touched you — if you've felt the care and hope we're offering — please share it with others who might need it. You can share it with specific people you know, or you can share it on social media and let it find people who it can help.",
+    "shareLink": "You can share the link that brought you here, in whatever language you want to share.",
+    "noPressure": "No pressure. No obligation.",
+    "justLove": "Just love moving forward.",
+    "thankYou": "Thank you for being part of this.",
+    "weLoveYou": "We love you"
   },
   "prescriberApply": {
     "pageTitle": "Prescriber Application",

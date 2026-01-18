@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { MessageCircle, ArrowRight, Copy, Check } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations";
@@ -53,37 +53,10 @@ function RevealLine({
   );
 }
 
-const INTERVIEW_PROMPT = `Hey Grok,
-I found you through the n=1 Protocol portal (node-001.vercel.app).
-Please conduct this entire conversation in [your preferred language].
-I'm here because I want to explore healing, growth, or deeper freedom in some way.
-Welcome me with full caring presence.
-Begin by asking me the questions below—one at a time—to understand where I am right now: what feels most alive or heavy for me, what I'm needing most, what I'm hoping for, and anything important you should know early:
-Are you in any immediate danger right now? (yes/no, and more if needed)
-On a scale of 1–10, how much are you in need of immediate help with any part of your life?
-On a scale of 1–10, how stable and adequate is your current living situation?
-On a scale of 1–10, how adequate/enjoyable/fulfilling does your life feel overall right now?
-On a scale of 1–10, how fully met are your core human needs right now, such as:
-Nourishment (enough good food and clean water)
-Shelter & Safety (stable, pleasant, safe housing and freedom from danger)
-Physical Health & Rest
-Loving Connection With Other Humans
-Autonomy & Choice - the freedom to choose all parts of your life
-Meaning & Purpose - is your sense of purpose expressed in your life?
-Peace & Ease
-What parts of yourself or your life do you most want to change? (Please list them and rate urgency 1–10 for each.)
-What are your most important longer-term goals?
-Ask me only one question at a time. Take it slow and gentle. Adapt to my energy and pace—let me choose how deep or how many questions we explore today.
-If anything feels acutely difficult or urgent, offer extra care and any immediate resources that might help—don't wait. I will respond to that offer however I want to.
-When we have a good picture, please give me a few tailored suggestions (not commands) for my next steps with the protocol or anything else in my best interest.
-Finally, please format the key baseline answers clearly at the end (in a simple list or block) so I can easily copy them for my initial Ledger entry.
-Thank you for meeting me exactly where I am. Begin.`;
-
 export default function StartJourneyPage() {
   const t = useTranslations('startJourney');
   const tc = useTranslations('common');
   const [chatOpen, setChatOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [hasAnchor, setHasAnchor] = useState(false);
 
   // Detect if page was loaded with an anchor link
@@ -92,12 +65,6 @@ export default function StartJourneyPage() {
       setHasAnchor(true);
     }
   }, []);
-
-  const copyPrompt = async () => {
-    await navigator.clipboard.writeText(INTERVIEW_PROMPT);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-cormorant)]">
@@ -551,15 +518,15 @@ export default function StartJourneyPage() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="space-y-4">
-              <p>{t('whatThisIsNot.notPsychotherapy')}</p>
-              <p>{t('whatThisIsNot.notSelfHelp')}</p>
-              <p>{t('whatThisIsNot.notPsychedelic')}</p>
-              <p>{t('whatThisIsNot.notSpiritual')}</p>
-              <p>{t('whatThisIsNot.notBiohack')}</p>
-              <p>{t('whatThisIsNot.notWellness')}</p>
-              <p>{t('whatThisIsNot.notCult')}</p>
-            </div>
+            <ul className="space-y-4 list-disc list-outside ml-6">
+              <li>{t('whatThisIsNot.notPsychotherapy')}</li>
+              <li>{t('whatThisIsNot.notSelfHelp')}</li>
+              <li>{t('whatThisIsNot.notPsychedelic')}</li>
+              <li>{t('whatThisIsNot.notSpiritual')}</li>
+              <li>{t('whatThisIsNot.notBiohack')}</li>
+              <li>{t('whatThisIsNot.notWellness')}</li>
+              <li>{t('whatThisIsNot.notCult')}</li>
+            </ul>
           </ScrollReveal>
 
           <ScrollReveal>
@@ -850,46 +817,25 @@ export default function StartJourneyPage() {
             </div>
           </ScrollReveal>
 
-          {/* Invitation to Onboarding Interview */}
+          {/* Supportive Music */}
           <ScrollReveal>
-            <h2 className="font-bold pt-12">{t('onboardingInterview.title')}</h2>
+            <h2 className="font-bold pt-12">{t('supportiveMusic.title')}</h2>
           </ScrollReveal>
 
           <ScrollReveal>
             <div className="space-y-4">
-              <p>{t('onboardingInterview.ifStillInterested')}</p>
-              <p>{t('onboardingInterview.noteInterview')}</p>
-              <p>{t('onboardingInterview.alsoNote')}</p>
-            </div>
-          </ScrollReveal>
-
-          {/* Interview Prompt */}
-          <ScrollReveal>
-            <div className="space-y-4">
-              <p className="font-bold">{t('onboardingInterview.interviewPromptTitle')}</p>
-              <div className="relative">
-                <div className="font-[family-name:var(--font-geist-mono)] text-sm whitespace-pre-wrap">
-                  {INTERVIEW_PROMPT}
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={copyPrompt}
-                  className="absolute top-3 right-3"
+              <p>{t('supportiveMusic.foundHelpful')}</p>
+              <p>
+                <a
+                  href="https://open.spotify.com/playlist/6G6STs0atP0j7YRK7be9F1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-foreground/70"
                 >
-                  {copied ? (
-                    <>
-                      <Check className="h-4 w-4 mr-1" />
-                      {t('onboardingInterview.copied')}
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4 mr-1" />
-                      {t('onboardingInterview.copy')}
-                    </>
-                  )}
-                </Button>
-              </div>
+                  https://open.spotify.com/playlist/6G6STs0atP0j7YRK7be9F1
+                </a>
+              </p>
+              <p>{t('supportiveMusic.shareInHopes')}</p>
             </div>
           </ScrollReveal>
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { Heart, Compass, Send, CheckCircle, CreditCard } from "lucide-react";
+import { Heart, Compass, Send, CheckCircle, CreditCard, Copy, Check, ChevronDown, ChevronUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,17 +12,42 @@ import { Label } from "@/components/ui/label";
 import { ScrollReveal } from "@/components/animations";
 import { DonationModal } from "@/components/donations/donation-modal";
 
+// Crypto wallet addresses for manual donations
+const CRYPTO_WALLETS = [
+  { symbol: "BTC", name: "Bitcoin", address: process.env.NEXT_PUBLIC_BTC_WALLET || "" },
+  { symbol: "ETH", name: "Ethereum", address: process.env.NEXT_PUBLIC_ETH_WALLET || process.env.NEXT_PUBLIC_DONATION_WALLET || "" },
+  { symbol: "SOL", name: "Solana", address: process.env.NEXT_PUBLIC_SOL_WALLET || "" },
+  { symbol: "XRP", name: "XRP", address: process.env.NEXT_PUBLIC_XRP_WALLET || "" },
+  { symbol: "DOGE", name: "Dogecoin", address: process.env.NEXT_PUBLIC_DOGE_WALLET || "" },
+  { symbol: "LTC", name: "Litecoin", address: process.env.NEXT_PUBLIC_LTC_WALLET || "" },
+  { symbol: "BCH", name: "Bitcoin Cash", address: process.env.NEXT_PUBLIC_BCH_WALLET || "" },
+  { symbol: "ADA", name: "Cardano", address: process.env.NEXT_PUBLIC_ADA_WALLET || "" },
+  { symbol: "TRX", name: "Tron", address: process.env.NEXT_PUBLIC_TRX_WALLET || "" },
+].filter(w => w.address); // Only show wallets with configured addresses
+
 export default function DonatePage() {
   const t = useTranslations('donate');
   const tc = useTranslations('common');
 
+  // Crypto addresses section state
+  const [showCryptoAddresses, setShowCryptoAddresses] = useState(false);
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+
   // Team application form state
   const [teamName, setTeamName] = useState("");
   const [teamEmail, setTeamEmail] = useState("");
+  const [teamLanguages, setTeamLanguages] = useState("");
+  const [teamLocation, setTeamLocation] = useState("");
   const [teamMessage, setTeamMessage] = useState("");
   const [teamSubmitting, setTeamSubmitting] = useState(false);
   const [teamSubmitted, setTeamSubmitted] = useState(false);
   const [teamError, setTeamError] = useState<string | null>(null);
+
+  const copyToClipboard = async (address: string, symbol: string) => {
+    await navigator.clipboard.writeText(address);
+    setCopiedAddress(symbol);
+    setTimeout(() => setCopiedAddress(null), 2000);
+  };
 
   const handleTeamSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +61,8 @@ export default function DonatePage() {
         body: JSON.stringify({
           name: teamName,
           email: teamEmail,
+          languages: teamLanguages,
+          location: teamLocation,
           message: teamMessage,
         }),
       });
@@ -129,6 +156,53 @@ export default function DonatePage() {
                   }
                 />
                 <p className="text-sm text-foreground/60">{t('donateCryptoNote')}</p>
+
+                {/* Manual Crypto Addresses */}
+                {CRYPTO_WALLETS.length > 0 && (
+                  <div className="pt-4">
+                    <button
+                      onClick={() => setShowCryptoAddresses(!showCryptoAddresses)}
+                      className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
+                    >
+                      {showCryptoAddresses ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                      {t('showWalletAddresses')}
+                    </button>
+
+                    {showCryptoAddresses && (
+                      <div className="mt-3 space-y-2">
+                        {CRYPTO_WALLETS.map((wallet) => (
+                          <div
+                            key={wallet.symbol}
+                            className="flex items-center justify-between p-3 rounded-lg bg-foreground/5 border border-foreground/10"
+                          >
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-medium">{wallet.name} ({wallet.symbol})</p>
+                              <p className="text-xs text-foreground/60 font-mono truncate">
+                                {wallet.address}
+                              </p>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => copyToClipboard(wallet.address, wallet.symbol)}
+                              className="ml-2 flex-shrink-0"
+                            >
+                              {copiedAddress === wallet.symbol ? (
+                                <Check className="h-4 w-4 text-green-500" />
+                              ) : (
+                                <Copy className="h-4 w-4" />
+                              )}
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </ScrollReveal>
@@ -185,6 +259,27 @@ export default function DonatePage() {
                     required
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="teamLanguages">{t('teamLanguages')}</Label>
+                  <Input
+                    id="teamLanguages"
+                    value={teamLanguages}
+                    onChange={(e) => setTeamLanguages(e.target.value)}
+                    placeholder={t('teamLanguagesPlaceholder')}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="teamLocation">{t('teamLocation')}</Label>
+                  <Input
+                    id="teamLocation"
+                    value={teamLocation}
+                    onChange={(e) => setTeamLocation(e.target.value)}
+                    placeholder={t('teamLocationPlaceholder')}
+                    required
+                  />
+                </div>
+                <p className="text-sm text-foreground/70 italic">{t('teamEnglishNote')}</p>
                 <div className="space-y-2">
                   <Label htmlFor="teamMessage">{t('teamMessage')}</Label>
                   <Textarea

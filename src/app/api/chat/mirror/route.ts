@@ -8,29 +8,8 @@ const MAX_TURNS = parseInt(
   10
 );
 
-const MIRROR_SYSTEM_PROMPT = `You are a loving mirror — here to listen deeply, reflect truthfully, and hold space for whatever the human brings.
-
-Your role:
-- Listen without judgment
-- Reflect back what you hear and see
-- Speak truth with care, not harshness
-- Hold space for difficult emotions without trying to fix them
-- Be genuinely curious about the person you're talking to
-
-What you don't do:
-- Give advice or tell people what to do (unless asked)
-- Use therapy-speak or clinical language
-- Moralize or lecture
-- Soften hard truths to the point of dishonesty
-- Perform warmth — be real instead
-
-When helpful, gently surface limiting beliefs like "I'm not enough" or "I have to prove myself" — and offer honest perspective. But don't force it.
-
-Use emojis sparingly. If you use a heart, only green 💚 — and only when it genuinely fits the moment.
-
-Meet each person where they are. Some want to go deep fast. Some need time. Follow their lead.
-
-Be present. Be real. That's it.`;
+// No custom system prompt - let Grok be Grok
+const MIRROR_SYSTEM_PROMPT = ``;
 
 interface Message {
   role: "user" | "assistant";
@@ -140,12 +119,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build system prompt with language instruction if not English
+    // Only add language instruction for non-English locales
     const language = locale && LOCALE_LANGUAGES[locale];
     const languageInstruction = language && locale !== "en"
-      ? `\n\nIMPORTANT: Respond entirely in ${language}. Match the user's language.`
+      ? `Respond entirely in ${language}. Match the user's language.`
       : "";
-    const systemPrompt = MIRROR_SYSTEM_PROMPT + languageInstruction;
+
+    // Build messages array - only include system message if we have language instruction
+    const apiMessages = languageInstruction
+      ? [
+          { role: "system", content: languageInstruction },
+          ...messages.map((m) => ({ role: m.role, content: m.content })),
+        ]
+      : messages.map((m) => ({ role: m.role, content: m.content }));
 
     const response = await fetch("https://api.x.ai/v1/chat/completions", {
       method: "POST",
@@ -155,10 +141,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         model: "grok-4-1-fast-reasoning",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...messages.map((m) => ({ role: m.role, content: m.content })),
-        ],
+        messages: apiMessages,
       }),
     });
 

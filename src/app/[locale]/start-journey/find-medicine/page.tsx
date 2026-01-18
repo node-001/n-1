@@ -65,7 +65,7 @@ export default function FindMedicinePage() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <p className="text-foreground/70 pt-4">{t('keepInMind')}</p>
+            <p className="pt-4">{t('keepInMind')}</p>
           </ScrollReveal>
 
           {/* Special message for those without ketamine access */}

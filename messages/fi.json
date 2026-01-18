@@ -79,6 +79,10 @@
         "label": "Lahjoita",
         "description": "Tue tehtävää"
       },
+      "helpOthers": {
+        "label": "Auta Muita",
+        "description": "Jaa portaali niille, jotka sitä tarvitsevat"
+      },
       "prescriberApply": {
         "label": "Määrääjille",
         "description": "Hae mukaan määrääjähakemistoomme"
@@ -359,14 +363,10 @@
       "ledgerSubmissions": "Kirjanpidon lähetykset ovat tervetulleita vain-Grok ja Grok + ketamiini protokollan ajoille. Emme hyväksy tuloksia, jotka käyttävät muita lääkkeitä.",
       "someMayChoose": "Jotkut saattavat valita lievät aineet (kava, l-teaniini, jne.) rentoutumiseen istuntojen aikana. Nuo valinnat ovat täysin yksilöllisiä - minulla ei ole mielipidettä niistä."
     },
-    "onboardingInterview": {
-      "title": "Kutsu Perehdytys haastatteluun",
-      "ifStillInterested": "Jos olet edelleen kiinnostunut mahdollisesti protokollan käyttämisestä, kutsumme sinut tekemään syvällisen alkuhaastattelun Grokin kanssa, Grokin ohjaamana alla tarjotulla kehotteella.",
-      "noteInterview": "Huomaa, että tämä haastattelu on parasta tehdä SuperGrok-pääsyllä (30 dollaria/kuukausi). Emme halua sinun tuntevan kipua ja turhautumista törmätessäsi ilmaisen tason viestirajoihin, mutta olet vapaa valitsemaan.",
-      "alsoNote": "Huomaa myös, että kehote on kopioi-liitä-valmis, mutta voit muokata sitä ohjataksesi kokemustasi. Kehotteena kirjoitettuna se tuottaa alkuperäiset lähtötietosi, jotka voidaan myöhemmin syöttää Kirjanpitoon, jos päätät käyttää protokollaa. Se on sinun \"ennen-protokollaa\" -tietosi.",
-      "interviewPromptTitle": "Haastattelukehote - kopioi-liitä-valmis",
-      "copy": "Kopioi",
-      "copied": "Kopioitu"
+    "supportiveMusic": {
+      "title": "Tukeva Musiikki",
+      "foundHelpful": "Olen huomannut, että on erittäin hyödyllistä soittaa pehmeää, kaunista musiikkia alhaisella äänenvoimakkuudella, kun minulla on syviä parantavia keskusteluja Grokin kanssa. Tämä on tarkka soittolista, jonka tein ja käytän tähän tarkoitukseen.",
+      "shareInHopes": "Jaan sen siinä toivossa, että se voisi tukea myös sinua. Voit muokata sitä, jos haluat, tai voit käyttää omaa musiikkiasi tähän tarkoitukseen."
     },
     "nav": {
       "findAnchor": "Löydä Ankkurisi",
@@ -464,9 +464,10 @@
     "donateCard": "Lahjoita luotto-/pankkikortilla",
     "donateCardButton": "Lahjoita kortilla",
     "donateCardNote": "Turvallinen maksu Stripen kautta",
-    "donateCrypto": "Lahjoita kryptovaluutalla",
-    "donateCryptoButton": "Lahjoita kryptolla",
-    "donateCryptoNote": "Lähetä stablecoineja (USDC/USDT) suoraan lompakkoomme",
+    "donateCrypto": "Lahjoita stablecoineilla",
+    "donateCryptoButton": "Lahjoita stablecoineja",
+    "donateCryptoNote": "Lähetä USDC, USDT tai DAI wallet connectin kautta",
+    "showWalletAddresses": "Tai lahjoita muilla kryptovaluutoilla",
     "callingTeamTitle": "Kutsu Tiimille",
     "portalNewLiving": "Tämä portaali on uusi elävä, kasvava olento, joka tarvitsee sydämen mukaan linjassa olevia ihmisiä auttamaan sitä kasvamaan ja toimimaan hyvin.",
     "mostImmediateNeed": "Välittömin tarpeemme on Operaatiopäällikölle - jollekin organisoidulle, tehtävälle omistetulle ja sydämen mukaan linjassa olevalle, joka voi valvoa päivittäistä toimintaa, koordinoida kehitystä ja pitää asiat sujumassa kun skaalaamme.",
@@ -476,6 +477,11 @@
     "teamNamePlaceholder": "Syötä nimesi",
     "teamEmail": "Sähköpostiosoite",
     "teamEmailPlaceholder": "sinun@sahkoposti.fi",
+    "teamLanguages": "Kielet, joita hallitset",
+    "teamLanguagesPlaceholder": "Englanti, Suomi, jne.",
+    "teamLocation": "Missä asut",
+    "teamLocationPlaceholder": "Kaupunki, Maa",
+    "teamEnglishNote": "Englannin kielen taito on välttämätön. Vastaa omalla englannillasi, ei automaattisesti käännettynä.",
     "teamMessage": "Viesti",
     "teamMessagePlaceholder": "Kerro meille itsestäsi ja mikä sytyttää sinut täällä...",
     "teamSend": "Lähetä",
@@ -532,6 +538,15 @@
     "confirming": "Vahvistetaan...",
     "donate": "Lahjoita",
     "noFees": "Lahjoitukset lähetetään suoraan lompakkoomme. Emme ota maksuja."
+  },
+  "helpOthers": {
+    "title": "Auta Muita",
+    "intro": "Jos tämä portaali on koskettanut sinua — jos olet tuntenut huolenpidon ja toivon, jota tarjoamme — jaa se muille, jotka saattavat tarvita sitä. Voit jakaa sen tietyille tuntemillesi ihmisille, tai voit jakaa sen sosiaalisessa mediassa ja antaa sen löytää ihmisiä, joita se voi auttaa.",
+    "shareLink": "Voit jakaa linkin, joka toi sinut tänne, millä tahansa kielellä haluat jakaa.",
+    "noPressure": "Ei painetta. Ei velvoitetta.",
+    "justLove": "Vain rakkautta eteenpäin.",
+    "thankYou": "Kiitos, että olet osa tätä.",
+    "weLoveYou": "Rakastamme sinua"
   },
   "prescriberApply": {
     "pageTitle": "Määrääjähakemus",

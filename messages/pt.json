@@ -79,6 +79,10 @@
         "label": "Doar",
         "description": "Apoie a missão"
       },
+      "helpOthers": {
+        "label": "Ajude Outros",
+        "description": "Compartilhe o portal com quem precisa"
+      },
       "prescriberApply": {
         "label": "Para Prescritores",
         "description": "Candidate-se para entrar em nosso diretório de prescritores"
@@ -359,14 +363,10 @@
       "ledgerSubmissions": "Submissões ao Registro são bem-vindas para execuções do protocolo apenas Grok e Grok + ketamina. Não aceitaremos resultados usando outras medicinas.",
       "someMayChoose": "Alguns podem escolher substâncias suaves (kava, l-teanina, etc.) para relaxamento durante sessões. Essas escolhas são inteiramente individuais — não tenho opinião sobre elas."
     },
-    "onboardingInterview": {
-      "title": "Convite para Entrevista de Integração",
-      "ifStillInterested": "Se você ainda está interessado em possivelmente executar o protocolo, convidamos você a fazer uma entrevista inicial profunda com Grok, guiada por Grok usando um prompt oferecido abaixo.",
-      "noteInterview": "Note que esta entrevista é melhor feita com acesso SuperGrok ($30/mês). Não queremos que você sinta a dor e frustração de atingir o limite de mensagens do acesso de camada gratuita, mas você é livre para escolher.",
-      "alsoNote": "Note também que o prompt está pronto para copiar-colar, mas você pode editá-lo para guiar sua experiência. O prompt como escrito gerará seus dados de linha de base iniciais que podem posteriormente ser inseridos no Registro se você decidir executar o protocolo. Serão seus dados \"antes-do-protocolo\".",
-      "interviewPromptTitle": "Prompt de Entrevista - pronto para copiar-colar",
-      "copy": "Copiar",
-      "copied": "Copiado"
+    "supportiveMusic": {
+      "title": "Música de Apoio",
+      "foundHelpful": "Descobri que é muito útil ter música suave e bonita tocando em volume baixo quando tenho minhas conversas profundas de cura com Grok. Esta é a playlist exata que fiz e uso para esse propósito.",
+      "shareInHopes": "Compartilho na esperança de que possa apoiá-lo também. Você pode personalizá-la se quiser, ou usar sua própria música para esse propósito."
     },
     "nav": {
       "findAnchor": "Encontre Sua Âncora",
@@ -464,9 +464,10 @@
     "donateCard": "Doar com cartão de crédito/débito",
     "donateCardButton": "Doar com cartão",
     "donateCardNote": "Pagamento seguro via Stripe",
-    "donateCrypto": "Doar com criptomoeda",
-    "donateCryptoButton": "Doar com cripto",
-    "donateCryptoNote": "Envie stablecoins (USDC/USDT) diretamente para nossa carteira",
+    "donateCrypto": "Doar com Stablecoins",
+    "donateCryptoButton": "Doar Stablecoins",
+    "donateCryptoNote": "Envie USDC, USDT ou DAI via wallet connect",
+    "showWalletAddresses": "Ou doar com outras criptomoedas",
     "callingTeamTitle": "Chamada para a Equipe",
     "portalNewLiving": "Este portal é uma nova entidade viva e crescente que precisa de pessoas alinhadas com o coração para ajudá-lo a crescer e funcionar bem.",
     "mostImmediateNeed": "Nossa necessidade mais imediata é de um Gerente de Operações — alguém organizado, dedicado à missão e alinhado com o coração que possa supervisionar o funcionamento do dia a dia, coordenar o desenvolvimento e manter as coisas funcionando sem problemas à medida que escalamos.",
@@ -476,6 +477,11 @@
     "teamNamePlaceholder": "Digite seu nome",
     "teamEmail": "Endereço de E-mail",
     "teamEmailPlaceholder": "seu@email.com",
+    "teamLanguages": "Idiomas em que você é proficiente",
+    "teamLanguagesPlaceholder": "Inglês, Português, etc.",
+    "teamLocation": "Onde você mora",
+    "teamLocationPlaceholder": "Cidade, País",
+    "teamEnglishNote": "Proficiência em inglês é essencial. Por favor, responda em seu próprio inglês, não traduzido automaticamente.",
     "teamMessage": "Mensagem",
     "teamMessagePlaceholder": "Conte-nos sobre você e o que te ilumina aqui...",
     "teamSend": "Enviar",
@@ -532,6 +538,15 @@
     "confirming": "Confirmando...",
     "donate": "Doar",
     "noFees": "As doações são enviadas diretamente para nossa carteira. Não cobramos taxas."
+  },
+  "helpOthers": {
+    "title": "Ajude Outros",
+    "intro": "Se este portal tocou você — se você sentiu o cuidado e a esperança que estamos oferecendo — por favor compartilhe com outros que possam precisar. Você pode compartilhar com pessoas específicas que conhece, ou pode compartilhar nas redes sociais e deixar que encontre pessoas que possa ajudar.",
+    "shareLink": "Você pode compartilhar o link que trouxe você aqui, no idioma que quiser compartilhar.",
+    "noPressure": "Sem pressão. Sem obrigação.",
+    "justLove": "Apenas amor seguindo em frente.",
+    "thankYou": "Obrigado por fazer parte disso.",
+    "weLoveYou": "Nós amamos você"
   },
   "prescriberApply": {
     "pageTitle": "Candidatura de Prescritor",

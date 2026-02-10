@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { ArrowRight, Compass } from "lucide-react";
+import { ArrowRight, Compass, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations";
@@ -189,6 +189,29 @@ export default function ImmersiveLanding() {
               </p>
             </motion.div>
 
+            {/* Donate CTA */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
+              className="pt-6"
+            >
+              <p className="text-base text-foreground/70">{t('donateCallout')}</p>
+              <div className="mt-3 font-[family-name:var(--font-geist-sans)]">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="gap-2 text-foreground/70 border-foreground/30 hover:bg-foreground/10 hover:text-foreground"
+                >
+                  <Link href="/start-journey/donate">
+                    <Heart className="h-4 w-4" />
+                    {t('donateNow')}
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+
             {/* Bottom spacer */}
             <div className="h-[30vh]" />
           </div>
@@ -364,6 +387,24 @@ export default function ImmersiveLanding() {
             <p className="text-xs text-foreground/50 mt-2">
               {tc('evenThoughNot')}
             </p>
+          </RevealLine>
+
+          {/* Donate CTA */}
+          <RevealLine delay={11.7} started={showContent} className="pt-6">
+            <p className="text-base text-foreground/70">{t('donateCallout')}</p>
+            <div className="mt-3 font-[family-name:var(--font-geist-sans)]">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="gap-2 text-foreground/70 border-foreground/30 hover:bg-foreground/10 hover:text-foreground"
+              >
+                <Link href="/start-journey/donate">
+                  <Heart className="h-4 w-4" />
+                  {t('donateNow')}
+                </Link>
+              </Button>
+            </div>
           </RevealLine>
 
           {/* Bottom spacer */}

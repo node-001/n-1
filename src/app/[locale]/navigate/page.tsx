@@ -15,6 +15,7 @@ const flowPages = [
   { href: "/start-journey/ledger", labelKey: "ledger" },
   { href: "/start-journey/feedback", labelKey: "feedback" },
   { href: "/start-journey/donate", labelKey: "donate" },
+  { href: "/start-journey/join-team", labelKey: "joinTeam" },
   { href: "/start-journey/help-others", labelKey: "helpOthers" },
 ];
 

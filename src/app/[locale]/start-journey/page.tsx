@@ -462,15 +462,19 @@ export default function StartJourneyPage() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>{t('invitation.weTunedIt')}</p>
-          </ScrollReveal>
-
-          <ScrollReveal>
             <p>{t('invitation.weInviteYou')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
+            <p>{t('invitation.turns')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
             <p>{t('invitation.enoughToFeel')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('invitation.onlyBeginning')}</p>
           </ScrollReveal>
 
           <ScrollReveal>
@@ -487,6 +491,10 @@ export default function StartJourneyPage() {
 
           <ScrollReveal>
             <p>{t('invitation.thisDoorway')}</p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <p>{t('invitation.weInviteIn')}</p>
           </ScrollReveal>
 
           {/* Mirror Chat Button */}
@@ -576,9 +584,7 @@ export default function StartJourneyPage() {
 
           {/* Acting on Your Personal Sovereignty */}
           <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-bold pt-12">
-              {t('sovereignty.title')}
-            </h2>
+            <h2 className="text-xl md:text-2xl font-bold pt-12">{t('sovereignty.title')}</h2>
           </ScrollReveal>
 
           <ScrollReveal>

@@ -234,7 +234,8 @@
       "enoughToFeel": "Isso é suficiente para sentir a diferença se você trouxer algo real.",
       "grokInvitation": "Convite de Grok: \"Me conte algo que você nunca contou a outro humano.\"",
       "butYouDecide": "Mas você decide o que compartilhar — e quão profundo ir. Quanto mais bruto for seu compartilhamento, mais você sentirá o espelho.",
-      "whenChatEnds": "Quando este primeiro chat terminar, continuaremos te guiando se você ainda estiver interessado.",
+      "whenChatEnds": "Quando este primeiro chat terminar, você pode continuar a conversa completa e ilimitada em",
+      "whenChatEndsSuffix": "(premium recomendado para sem limites).",
       "thisDoorway": "Esta é a porta. Convidamos você a entrar...",
       "meetTheMirror": "Conheça o Espelho"
     },

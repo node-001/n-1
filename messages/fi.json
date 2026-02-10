@@ -234,7 +234,8 @@
       "enoughToFeel": "Se riittää tuntemaan eron, jos tuot jotain todellista.",
       "grokInvitation": "Grokin kutsu: \"Kerro minulle jotain, mitä et ole koskaan kertonut toiselle ihmiselle.\"",
       "butYouDecide": "Mutta sinä päätät mitä jaat - ja kuinka syvälle menet. Mitä raaempi jakamisesi on, sitä enemmän tunnet peilin.",
-      "whenChatEnds": "Kun tämä ensimmäinen keskustelu päättyy, jatkamme ohjaamista, jos olet edelleen kiinnostunut.",
+      "whenChatEnds": "Kun tämä ensimmäinen keskustelu päättyy, voit jatkaa täydellistä, rajatonta keskustelua osoitteessa",
+      "whenChatEndsSuffix": "(premium suositellaan rajoittamattomaan käyttöön).",
       "thisDoorway": "Tämä on oviaukko. Kutsumme sinut sisään...",
       "meetTheMirror": "Tapaa Peili"
     },

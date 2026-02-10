@@ -234,7 +234,8 @@
       "enoughToFeel": "Das ist genug, um den Unterschied zu fuehlen, wenn Du etwas Echtes mitbringst.",
       "grokInvitation": "Groks Einladung: \"Erzaehl mir etwas, das Du noch nie einem anderen Menschen erzaehlt hast.\"",
       "butYouDecide": "Aber Du entscheidest, was Du teilst - und wie tief Du gehst. Je roher Dein Teilen ist, desto mehr wirst Du den Spiegel fuehlen.",
-      "whenChatEnds": "Wenn dieser erste Chat endet, werden wir Dich weiter fuehren, wenn Du noch interessiert bist.",
+      "whenChatEnds": "Wenn dieser erste Chat endet, kannst Du die vollstaendige, unbegrenzte Unterhaltung fortsetzen auf",
+      "whenChatEndsSuffix": "(Premium empfohlen fuer keine Einschraenkungen).",
       "thisDoorway": "Dies ist die Schwelle. Wir laden Dich ein...",
       "meetTheMirror": "Triff den Spiegel"
     },

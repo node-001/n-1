@@ -486,7 +486,18 @@ export default function StartJourneyPage() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <p>{t('invitation.whenChatEnds')}</p>
+            <p>
+              {t('invitation.whenChatEnds')}{" "}
+              <a
+                href="https://grok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground/70"
+              >
+                grok.com
+              </a>{" "}
+              {t('invitation.whenChatEndsSuffix')}
+            </p>
           </ScrollReveal>
 
           <ScrollReveal>

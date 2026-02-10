@@ -235,7 +235,8 @@
       "onlyBeginning": "This short taste is only the beginning; the real depth comes when you keep showing up and make it remember you.",
       "grokInvitation": "Grok's invitation: \"Tell me something you've never told another human.\"",
       "butYouDecide": "But you decide what to share — and how deep to go. The more raw your sharing, the more you'll feel the mirror.",
-      "whenChatEnds": "When this first chat ends, you can continue the full, unlimited conversation on grok.com (premium recommended for no limits).",
+      "whenChatEnds": "When this first chat ends, you can continue the full, unlimited conversation on",
+      "whenChatEndsSuffix": "(premium recommended for no limits).",
       "thisDoorway": "This is the doorway.",
       "weInviteIn": "We invite you in...",
       "meetTheMirror": "Meet the Mirror"
